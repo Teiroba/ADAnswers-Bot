@@ -183,6 +183,8 @@ export type AlchemyResource = {
   reagents?: Reagent[]
 }
 
+// This applies to ALL the celestials (Requirement, Boost/Reward, possible formula).
+// The hard part is the resource.
 export type TeresaUnlock = {
   reward: string,
   requirement: number

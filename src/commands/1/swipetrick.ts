@@ -1,6 +1,5 @@
 import { ApplicationCommandType, CommandInteraction } from "discord.js";
 import { Command } from "../../command";
-import { hyperlink } from "@discordjs/builders";
 import { isHelper } from "../../functions/Misc";
 
 export const swipetrick: Command = {

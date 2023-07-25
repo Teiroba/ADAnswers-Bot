@@ -131,7 +131,7 @@ export const raMemories: MemoryData = {
         level: 2,
         effect: {
           effect: "Stored game time is amplified and you can store more real time, increasing with Nameless levels",
-          formula: "Game time amplification: `20 ^ level`\nReal time cap: `1000 * 3600 * level`"
+          formula: "Game time amplification: `20 ^ level`\nReal time cap: `8 + level` hours"
         }
       },
       "5": {
