@@ -1,5 +1,6 @@
 import { ColorResolvable } from "discord.js";
 import { Model } from "sequelize";
+import { celestials } from "src/commands/5/celestials";
 
 export type AchievementInfo = {
   id: number;
@@ -183,11 +184,39 @@ export type AlchemyResource = {
   reagents?: Reagent[]
 }
 
-// This applies to ALL the celestials (Requirement, Boost/Reward, possible formula).
-// The hard part is the resource.
-export type TeresaUnlock = {
-  reward: string,
-  requirement: number
+export type CelestialMechanic = {
+  name: string,
+  explanation: string,
+  formula?: string
+}
+
+// Perk shop, Effarig's things, Nameless Time upgrade, V-Milestones,
+// Ra's... uh... Lai'tela's Singularity Milestones, Pelle's Upgrades.
+export type CelestialUnlock = {
+  name?: string,
+  requirement: number | string,
+  effect: string,
+  formula?: string,
+}
+
+export type ScalingCelestialUnlock = CelestialUnlock & {
+  initialCost: number,
+  increment: number,
+  cap: string
+}
+
+export type CelestialInfo = {
+  name: string,
+  celestialOf: string,
+  info: string,
+  reality: {
+    // TODO: determine if there exists / should exist a ChallengeInfo type.
+    challenge: string,
+    reward: string,
+    formula: string
+  },
+  mainMechanic: CelestialMechanic,
+  unlocks: Array<CelestialUnlock | ScalingCelestialUnlock>
 }
 
 export type PerkShopUpgrade = {
@@ -197,6 +226,36 @@ export type PerkShopUpgrade = {
   description: string,
   cap: string
 }
+
+export type RelicShopUpgrade = {
+  description: string,
+  cost: number
+}
+
+export type TeresaInfo = CelestialInfo & {
+  perkShop: Array<PerkShopUpgrade>
+};
+
+// TODO: Effarig's schtick may be too complex to cram here.
+export type EffarigInfo = CelestialInfo & {
+  relicShop: Array<RelicShopUpgrade>
+}
+
+export type NamelessInfo = CelestialInfo & {
+  Tesseracts: string,
+}
+
+export type VInfo = CelestialInfo & {
+
+}
+// This applies to ALL the celestials (Requirement, Boost/Reward, possible formula).
+// The hard part is the resource.
+
+export type TeresaUnlock = {
+  reward: string,
+  requirement: number
+}
+
 
 export type VAchievement = {
   name: string,

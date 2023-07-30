@@ -1,5 +1,5 @@
 import { AttachmentBuilder, ChatInputCommandInteraction, User } from "discord.js";
-import { Teresa, TeresaPerkShopEmbed, TeresaRealityEmbed, TeresaUnlockEmbed } from "../../../utils/databases/celestials/teresa";
+import { TeresaBasicInfoEmbed, TeresaPerkShopEmbed, TeresaRealityEmbed, TeresaUnlockEmbed } from "../../../utils/databases/celestials/teresa-concept";
 import { authorTitle, isHelper } from "../../../functions/Misc";
 
 export async function teresaCelestialSubcommand(interaction: ChatInputCommandInteraction): Promise<void> {
@@ -9,7 +9,8 @@ export async function teresaCelestialSubcommand(interaction: ChatInputCommandInt
 
   switch (infoRequested) {
     case "basic": {
-      await interaction.reply({ content: Teresa.info, ephemeral: !isHelper(interaction) });
+      const embed = TeresaBasicInfoEmbed().setAuthor({ name: authorTitle(interaction), iconURL: user.displayAvatarURL() }).setThumbnail("attachment://teresa.png");
+      await interaction.reply({ embeds: [embed], files: [image], ephemeral: !isHelper(interaction) });
       break;
     }
     case "reality": {
