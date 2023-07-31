@@ -1,6 +1,5 @@
 import { ColorResolvable } from "discord.js";
 import { Model } from "sequelize";
-import { celestials } from "src/commands/5/celestials";
 
 export type AchievementInfo = {
   id: number;
@@ -236,14 +235,9 @@ export type TeresaInfo = CelestialInfo & {
   perkShop: Array<PerkShopUpgrade>
 };
 
-// TODO: Effarig's schtick may be too complex to cram here.
-export type EffarigInfo = CelestialInfo & {
-  relicShop: Array<RelicShopUpgrade>
-}
+export type EffarigInfo = CelestialInfo & { }
 
-export type NamelessInfo = CelestialInfo & {
-  Tesseracts: string,
-}
+export type NamelessInfo = CelestialInfo & { }
 
 export type VInfo = CelestialInfo & {
 

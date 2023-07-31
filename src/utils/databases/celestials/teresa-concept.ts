@@ -4,8 +4,6 @@ import { Colour } from "../../colours";
 import { EmbedBuilder } from "discord.js";
 import { format } from "../../format";
 
-export const TeresaBasicResponse = () => `Teresa's main mechanic involves **${Teresa.mainMechanic.name}**.\n${Teresa.mainMechanic.explanation}\nThe RM multiplier is ${Teresa.mainMechanic.formula}`;
-
 export const TeresaBasicInfoEmbed = () => new EmbedBuilder()
   .setTitle("Teresa, the Celestial of Reality")
   .setColor(Colour.teresa)
