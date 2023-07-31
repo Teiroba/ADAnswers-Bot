@@ -1,6 +1,7 @@
 import { ApplicationCommandOptionType, ApplicationCommandType, CommandInteraction } from "discord.js";
 import { Command } from "../../command";
 import { effarigCelestialSubcommand } from "./celestials/effarig";
+import { namelessCelestialSubcommand } from "./celestials/nameless";
 import { raCelestialSubcommand } from "./celestials/ra";
 import { teresaCelestialSubcommand } from "./celestials/teresa";
 import { vCelestialSubcommand } from "./celestials/v";
@@ -55,6 +56,28 @@ export const celestials: Command = {
         {
           name: "unlocks",
           description: "Gives some basic information about Effarig's unlocks",
+          type: ApplicationCommandOptionType.Subcommand
+        }
+      ]
+    },
+    {
+      name: "nameless",
+      description: "Learn a bit about The Nameless Ones' shenanigans",
+      type: ApplicationCommandOptionType.SubcommandGroup,
+      options: [
+        {
+          name: "basic",
+          description: "Gives some basic information about The Nameless Ones",
+          type: ApplicationCommandOptionType.Subcommand
+        },
+        {
+          name: "reality",
+          description: "Gives some basic information about The Nameless Ones' Pris- er, Reality",
+          type: ApplicationCommandOptionType.Subcommand
+        },
+        {
+          name: "unlocks",
+          description: "Gives some basic information about The Nameless Ones' unlocks",
           type: ApplicationCommandOptionType.Subcommand
         }
       ]
@@ -137,6 +160,9 @@ export const celestials: Command = {
         break;
       case "effarig":
         await effarigCelestialSubcommand(interaction);
+        break;
+      case "nameless":
+        await namelessCelestialSubcommand(interaction);
         break;
       case "v":
         await vCelestialSubcommand(interaction);
