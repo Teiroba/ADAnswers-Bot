@@ -1,16 +1,16 @@
+import { PerkShopUpgrade, TeresaInfo } from "../../types";
 import { footerText, quantify } from "../../../functions/Misc";
 import { Colour } from "../../colours";
 import { EmbedBuilder } from "discord.js";
-import { TeresaInfo } from "../../types";
 import { format } from "../../format";
 
 export const TeresaBasicResponse = () => `Teresa's main mechanic involves **${Teresa.mainMechanic.name}**.\n${Teresa.mainMechanic.explanation}\nThe RM multiplier is ${Teresa.mainMechanic.formula}`;
 
 export const TeresaBasicInfoEmbed = () => new EmbedBuilder()
   .setTitle("Teresa, the Celestial of Reality")
-  .setColor(Colour.Teresa)
+  .setColor(Colour.teresa)
   .addFields(
-    { name: "Basic", value: Teresa.info },
+    { name: " ", value: Teresa.info },
     { name: Teresa.mainMechanic.name, value: Teresa.mainMechanic.explanation },
     { name: "Formula", value: Teresa.mainMechanic.formula! }
   )
@@ -31,12 +31,18 @@ export const TeresaPerkShopEmbed = () => new EmbedBuilder()
   .setTitle("Teresa's Perk Shop")
   .setColor(Colour.teresa)
   .addFields(Teresa.perkShop.map(buyable => (
-    { name: `${buyable.name}`,
-      // TODO: deal with the Music Glyph cost edge-case.
-      value: `${buyable.description}\n**Cost:** ${quantify("Perk Point", buyable.initialCost)} (with x${buyable.increment} cost increase per purchase)\n**Cap:** ${buyable.cap}`
+    { name: `${buyable.name}`, value: perkShopUpgradeDescription(buyable)
     })))
   .setTimestamp()
   .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+
+function perkShopUpgradeDescription(buyable: PerkShopUpgrade): string {
+  let costInfo: string = `${quantify("Perk Point", buyable.initialCost)}`;
+  if (buyable.increment !== 1) {
+    costInfo += ` (Increasing by x${buyable.increment} per purchase)`;
+  }
+  return `${buyable.description}\n**Cost:** ${costInfo}\n**Cap:** ${buyable.cap}`;
+}
 
 export const TeresaUnlockEmbed = () => new EmbedBuilder()
   .setTitle("Teresa's Unlocks")
@@ -49,10 +55,10 @@ export const TeresaUnlockEmbed = () => new EmbedBuilder()
 export const Teresa: TeresaInfo = {
   name: "Teresa",
   celestialOf: "Reality",
-  info: `Teresa, the first Celestial, is unlocked by obtaining all Reality Upgrades (Achievement 147). Progression involves collecting Reality Machines to pour into Teresa's container for various unlocks and a RM multiplier.`,
+  info: `Teresa, the first Celestial, is unlocked by obtaining all Reality Upgrades (Achievement 147).`,
   reality: {
     // eslint-disable-next-line max-len
-    challenge: `Time Theorem Generation from Dilation Glyphs is disabled. Infinity and Eternity Point gain is raised to the power of ^0.55. To complete Teresa's Reality, you have to reach e4000 EP and unlock Reality via the Time Study tree. Teresa's Reality may be repeated for a stronger reward, similar to Dilation.`,
+    challenge: `Time Theorem Generation from Dilation Glyphs is disabled. Infinity and Eternity Point gain is raised to the power of ^0.55. To complete Teresa's Reality, you have to reach e4000 EP and unlock Reality via the Time Study tree. Teresa's Reality may be repeated for a stronger (not stacking) reward, similar to Dilation.`,
     reward: `Multiply the gain of glyph sacrifice power, based on how much antimatter you produced while in Teresa's Reality.`,
     formula: "x`max((log10(antimatter) / 1.5e8)^12, 1)`"
   },
@@ -81,7 +87,7 @@ export const Teresa: TeresaInfo = {
     },
     {
       requirement: 1e21,
-      effect: "Unlock ||Effarig, Celestial of Ancient Relics||."
+      effect: "Unlock the Second Celestial: ||Effarig, Celestial of Ancient Relics||."
     },
     {
       requirement: 1e24,
