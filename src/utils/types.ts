@@ -239,9 +239,9 @@ export type EffarigInfo = CelestialInfo & { }
 
 export type NamelessInfo = CelestialInfo & { }
 
-export type VInfo = CelestialInfo & {
+export type VInfo = CelestialInfo & { }
 
-}
+export type LaitelaInfo = CelestialInfo & { }
 // This applies to ALL the celestials (Requirement, Boost/Reward, possible formula).
 // The hard part is the resource.
 
