@@ -1,23 +1,19 @@
-import { PerkShopUpgrade, TeresaUnlock } from "../../types";
+import { PerkShopUpgrade, TeresaInfo } from "../../types";
 import { footerText, quantify } from "../../../functions/Misc";
 import { Colour } from "../../colours";
 import { EmbedBuilder } from "discord.js";
 import { format } from "../../format";
 
-interface TeresaObject {
-  info: string,
-  reality: {
-    challenge: string,
-    reward: string,
-    formula: string,
-  },
-  mechanic: {
-    reward: string,
-    formula: string,
-  },
-  perkShop: Array<PerkShopUpgrade>,
-  unlocks: Array<TeresaUnlock>,
-}
+export const TeresaBasicInfoEmbed = () => new EmbedBuilder()
+  .setTitle("Teresa, the Celestial of Reality")
+  .setColor(Colour.teresa)
+  .addFields(
+    { name: " ", value: Teresa.info },
+    { name: Teresa.mainMechanic.name, value: Teresa.mainMechanic.explanation },
+    { name: "Formula", value: Teresa.mainMechanic.formula! }
+  )
+  .setTimestamp()
+  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
 
 export const TeresaRealityEmbed = () => new EmbedBuilder()
   .setTitle("Teresa's Reality")
@@ -25,7 +21,6 @@ export const TeresaRealityEmbed = () => new EmbedBuilder()
   .addFields(
     { name: "Challenge", value: Teresa.reality.challenge },
     { name: "Reward", value: `${Teresa.reality.reward}\nFormula: ${Teresa.reality.formula}` },
-    { name: "Mechanic", value: `${Teresa.mechanic.reward} with formula ${Teresa.mechanic.formula}` }
   )
   .setTimestamp()
   .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
@@ -34,31 +29,69 @@ export const TeresaPerkShopEmbed = () => new EmbedBuilder()
   .setTitle("Teresa's Perk Shop")
   .setColor(Colour.teresa)
   .addFields(Teresa.perkShop.map(buyable => (
-    { name: `${buyable.name}`,
-      value: `${buyable.description}\n**Cost:** ${quantify("Perk Point", buyable.initialCost)} (with x${buyable.increment} cost increase per purchase)\n**Cap:** ${buyable.cap}`
+    { name: `${buyable.name}`, value: perkShopUpgradeDescription(buyable)
     })))
   .setTimestamp()
   .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
 
+function perkShopUpgradeDescription(buyable: PerkShopUpgrade): string {
+  let costInfo: string = `${quantify("Perk Point", buyable.initialCost)}`;
+  if (buyable.increment !== 1) {
+    costInfo += ` (Increasing by x${buyable.increment} per purchase)`;
+  }
+  return `${buyable.description}\n**Cost:** ${costInfo}\n**Cap:** ${buyable.cap}`;
+}
+
 export const TeresaUnlockEmbed = () => new EmbedBuilder()
   .setTitle("Teresa's Unlocks")
   .setColor(Colour.teresa)
-  .addFields(Teresa.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} Reality Machines`, value: unlock.reward })))
+  .addFields(Teresa.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} Reality Machines`, value: unlock.effect })))
   .setTimestamp()
   .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
 
-export const Teresa: TeresaObject = {
-  // eslint-disable-next-line max-len
-  info: `Teresa, the first Celestial, is unlocked by obtaining all Reality Upgrades (Achievement 147). The main screen features a bar with a "Pour RM" button, allowing you to deposit, or "pour", RM into a container for a Reality Machine multiplier. Once poured, RM cannot be retrieved. Unlocking Teresa's Reality requires reaching 1e14 RM inside the container. Completing Teresa's Reality multiplies Glyph Sacrifice based on antimatter gained during the run. However, progress requires continuous pouring of RM. Reaching 1e21 RM in the container unlocks the next Celestial. Teresa's Reality can be repeated, with stronger rewards obtained by achieving higher antimatter amounts on subsequent runs.`,
+
+export const Teresa: TeresaInfo = {
+  name: "Teresa",
+  celestialOf: "Reality",
+  info: `Teresa, the first Celestial, is unlocked by obtaining all Reality Upgrades (Achievement 147).`,
   reality: {
-    challenge: `Glyph Time Theorem generation is disabled. You gain less Infinity Points and Eternity Points (x^0.55). This Reality can be repeated for a stronger reward based on the antimatter gained within it.`,
-    reward: "Improve GLyph Sacrifice power",
+    // eslint-disable-next-line max-len
+    challenge: `Time Theorem Generation from Dilation Glyphs is disabled. Infinity and Eternity Point gain is raised to the power of ^0.55. To complete Teresa's Reality, you have to reach e4000 EP and unlock Reality via the Time Study tree. Teresa's Reality may be repeated for a stronger (not stacking) reward, similar to Dilation.`,
+    reward: `Multiply the gain of glyph sacrifice power, based on how much antimatter you produced while in Teresa's Reality.`,
     formula: "x`max((log10(antimatter) / 1.5e8)^12, 1)`"
   },
-  mechanic: {
-    reward: "You can pour Reality Machines into a container for various unlocks, including Teresa's Reality, as well as a Reality Machine multiplier",
+  mainMechanic: {
+    name: `Teresa's Container and Pouring RM`,
+    // eslint-disable-next-line max-len
+    explanation: `Progression with Teresa involves sacrificing, or "pouring", Reality Machines into a container in exchange for various unlocks and a RM multiplier. Progress towards unlocks is shown by the fill amount of Teresa's container; note that the percent filled is logarithmic, and each additional amount filled requires an exponentially increasing amount of RM. The contained becomes completely filled at e24 RM, and no further machines can be poured in.`,
     formula: "x`max(250 * (poured / 1e24)^0.1, 1)`"
   },
+  unlocks: [
+    {
+      requirement: 1e6,
+      effect: "Start Reality with all Eternity Upgrades unlocked. Supercedes EU1 and EU2. Does not keep your EP multipier across Realities."
+    },
+    {
+      requirement: 1e10,
+      effect: "Unlock the ability to \"Undo\" equipping a Glyph. This allows you to rewind time to when you equipped a glyph in a reality, which can streamline testing of glyph sets."
+    },
+    {
+      requirement: 1e14,
+      effect: "Unlock Teresa's Reality"
+    },
+    {
+      requirement: 1e18,
+      effect: "Unlock passive Eternity Point generation. You will gain 1% of your EP gain on Eternity per minute, affected by game speed boosts."
+    },
+    {
+      requirement: 1e21,
+      effect: "Unlock the Second Celestial: ||Effarig, Celestial of Ancient Relics||."
+    },
+    {
+      requirement: 1e24,
+      effect: "Unlock Teresa's Perk Point Shop."
+    }
+  ],
   perkShop: [
     {
       name: "Glyph Level Increase",
@@ -92,7 +125,8 @@ export const Teresa: TeresaObject = {
       name: "Single Music Glyph",
       initialCost: 1,
       increment: 1,
-      description: "Reveive a Music Glyph of a random type that is 80% of your highest level. Try clicking it!",
+      // eslint-disable-next-line max-len
+      description: `Generate a Music Glyph of a random type that is 80% of your highest level. This glyph is similar to a normal glyph, but it has a custom "Music" theme, and plays sound when clicked in the inventory. These glyphs can be sacrificed or ||refined|| (with relevant Ra unlock) like normal Glyphs.`,
       cap: "None"
     },
     {
@@ -101,32 +135,6 @@ export const Teresa: TeresaObject = {
       increment: 1,
       description: "Fill all empty slots in your inventory with Music Glyphs.",
       cap: "None"
-    },
-  ],
-  unlocks: [
-    {
-      requirement: 1e6,
-      reward: "You start Reality with all Eternity Upgrades unlocked"
-    },
-    {
-      requirement: 1e10,
-      reward: "Unlock \"Undo\" of equipping a Glyph"
-    },
-    {
-      requirement: 1e14,
-      reward: "Unlock Teresa's Reality"
-    },
-    {
-      requirement: 1e18,
-      reward: "Unlock passive Eternity Point generation"
-    },
-    {
-      requirement: 1e21,
-      reward: "Unlock Effarig, Celestial of Ancient Relics."
-    },
-    {
-      requirement: 1e24,
-      reward: "Unlock Teresa's Perk Point Shop."
     }
   ]
 };

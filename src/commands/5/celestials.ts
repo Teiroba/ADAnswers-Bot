@@ -100,21 +100,27 @@ export const celestials: Command = {
         },
         {
           name: "achievements",
-          description: "Check out the achievements in V",
+          description: "Check out V's Achievements",
           type: ApplicationCommandOptionType.Subcommand,
           options: [
             {
               name: "achievement",
               description: "Choose a V-Achievement",
-              required: true,
+              required: false,
               type: ApplicationCommandOptionType.String,
               choices: ["glyphknight", "antistellar", "se7en", "youngboy", "eternalsunshine", "matterception", "requiem", "postdestination", "shutterglyph"].map(achievement => ({ name: achievement, value: achievement }))
+            },
+            {
+              name: "tier",
+              description: "Choose the achievement's tier",
+              required: false,
+              type: ApplicationCommandOptionType.Integer,
             }
           ]
         },
         {
           name: "unlocks",
-          description: "Check out the V Unlocks",
+          description: "Get some basic information about V's Unlocks",
           type: ApplicationCommandOptionType.Subcommand
         }
       ]

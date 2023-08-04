@@ -50,15 +50,5 @@ export const Laitela: LaitelaInfo = {
     explanation: `Progression with Lai'tela involves producing two resources: Dark Matter, and Dark Energy. These resources are produced by Dark Matter Dimensions (DmD), shown in Lai'tela's tab. As expected, Each DmD produces the tier below it, with the first DmD producing Dark Matter. Unlike other Dimensions, DmDs are not continuous, and their production is dictated by a timer, only producing when their timer runs out. Additionally, each DmD produces Dark Energy every time it ticks, as an amount independent of the amount of that tier of DmD has.\n**Dark Matter** directly affects Continuum, by increasing the amount of purchases by a percent. This includes 8th Dimensions, and can allow you to get significantly more Antimatter Galaxies.\n**Dark Energy** is a seperate resource, used to produce Singularities. Singularities don't do anything on their own, but they unlock milestones as you collect more of them.`,
   },
   unlocks: [
-    {
-      requirement: 1e35,
-      // eslint-disable-next-line max-len
-      effect: "Increase the starting point of the softcap for free Tickspeed upgrades from Time Dimensions from 300,000 to 400,000."
-    },
-    {
-      requirement: 1e40,
-      // eslint-disable-next-line max-len
-      effect: "Unlock the Laitela's Reality."
-    }
   ]
 };

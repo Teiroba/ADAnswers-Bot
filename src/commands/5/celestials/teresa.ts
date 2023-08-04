@@ -1,5 +1,5 @@
 import { AttachmentBuilder, ChatInputCommandInteraction, User } from "discord.js";
-import { TeresaBasicInfoEmbed, TeresaPerkShopEmbed, TeresaRealityEmbed, TeresaUnlockEmbed } from "../../../utils/databases/celestials/teresa-concept";
+import { TeresaBasicInfoEmbed, TeresaPerkShopEmbed, TeresaRealityEmbed, TeresaUnlockEmbed } from "../../../utils/databases/celestials/teresa";
 import { authorTitle, isHelper } from "../../../functions/Misc";
 
 export async function teresaCelestialSubcommand(interaction: ChatInputCommandInteraction): Promise<void> {

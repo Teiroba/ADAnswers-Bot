@@ -6,19 +6,66 @@ import { Colour } from "../../colours";
 import { EmbedBuilder } from "discord.js";
 import { format } from "../../format";
 
-export const VUnlocksEmbed = () => new EmbedBuilder()
-  .setTitle("V Unlocks")
+export const VBasicInfoEmbed = () => new EmbedBuilder()
+  .setTitle("V, the Celestial of Achievements")
   .setColor(Colour.v)
-  .addFields(V.unlocks.map(unlock => ({ name: `${unlock.requirement} ST Unlock`, value: `${unlock.effect}\n${unlock.formula ? `Formula: ${unlock.formula}` : ""}`, inline: false })))
+  .addFields(
+    { name: " ", value: V.info },
+    { name: V.mainMechanic.name, value: V.mainMechanic.explanation }
+  )
   .setTimestamp()
   .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
 
-export function isValidAchievementTier(achievementId: string, tier: number|undefined): boolean {
-  if (!(achievementId in V.achievements)) {
-    return false;
+export const VRealityEmbed = () => new EmbedBuilder()
+  .setTitle("V's Reality")
+  .setColor(Colour.v)
+  .addFields(
+    { name: "Challenge", value: V.reality.challenge },
+    { name: "Reward", value: `${V.reality.reward}` }
+  )
+  .setTimestamp()
+  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+
+export const VUnlocksEmbed = () => new EmbedBuilder()
+  .setTitle("V Unlocks")
+  .setColor(Colour.v)
+  .addFields(V.unlocks.map(unlock => ({ name: `At ${unlock.requirement} Space Theorems`, value: `${unlock.effect}\n${unlock.formula ? `Formula: ${unlock.formula}` : ""}`, inline: false })))
+  .setTimestamp()
+  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+
+export function VAllBasicAchievementsEmbed(): EmbedBuilder {
+  const nonHardAchievements = Object.keys(V.achievements).filter(x => !V.achievements[x].isHard);
+  return new EmbedBuilder()
+    .setTitle("V's Achievements")
+    .setColor(Colour.v)
+    .addFields(
+      // Weird. TS refuses to allow the existence of optional parameters. I'd sooner expect ESLint to yell at me.
+      nonHardAchievements.map(x => ({ name: V.achievements[x].name, value: formatVAchievement(x, null), inline: false }))
+    )
+    .setTimestamp()
+    .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+}
+
+export function VAchievementEmbed(achievementId: string, tier: number | null): EmbedBuilder {
+  const achievement: VAchievement = V.achievements[achievementId];
+  const reward = achievement.isHard ? 2 : 1;
+  let title = `${achievement.isHard ? "Hard-" : ""}V Achievement: ${achievement.name}`;
+  if (isValidAchievementTier(achievementId, tier)) {
+    title += ` Tier ${tier}`;
   }
-  // Case of the user not providing a value.
-  if (typeof tier === "undefined") return true;
+  return new EmbedBuilder()
+    .setTitle(title)
+    .setColor(Colour.v)
+    .addFields(
+      { name: "Requirement", value: formatVAchievement(achievementId, tier), inline: false },
+      { name: "Reward", value: `${reward} ${pluralise("Space Theorem", reward)}` }
+    )
+    .setTimestamp()
+    .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+}
+
+function isValidAchievementTier(achievementId: string, tier: number | null): boolean {
+  if (tier === null) return false;
   if (tier % 1 !== 0) return false;
   if (tier < 1) return false;
 
@@ -28,34 +75,23 @@ export function isValidAchievementTier(achievementId: string, tier: number|undef
   return true;
 }
 
-function formatVAchievement(achievementId: string, tier: number|undefined): string {
+function formatVAchievement(achievementId: string, tier: number | null): string {
   const achievement: VAchievement = V.achievements[achievementId];
   // Super cheaty formatting, gooooooooo
   let requirement: string;
-  if (typeof tier === "undefined") {
-    const maxTier = achievement.isHard ? 4 : 5;
-    requirement = `(${format(achievement.values[0])}-${format(achievement.values[maxTier])}`;
+  if (isValidAchievementTier(achievementId, tier)) {
+    requirement = `**${format(achievement.values[tier! - 1])}**`;
   } else {
-    requirement = format(achievement.values[tier - 1]);
+    const maxTier = achievement.isHard ? 4 : 5;
+    requirement = `**(${format(achievement.values[0])} - ${format(achievement.values[maxTier])})**`;
   }
   return achievement.description.replace("{0}", requirement);
 }
 
-// Might just throw in the towel and make this a function.
-export const VAchievementEmbed = (achievementId: string, tier: number|undefined) => new EmbedBuilder()
-  .setTitle(V.achievements[achievementId].name)
-  .setColor(Colour.v)
-  .addFields(
-    { name: "Requirement", value: formatVAchievement(achievementId, tier), inline: false },
-    { name: "Reward", value: `${V.achievements[achievementId].isHard ? 2 : 1} ${pluralise("Space Theorem", V.achievements[achievementId].isHard ? 2 : 1)}` }
-  )
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
-
 export const V: VInfo = {
   name: "V",
   celestialOf: "Achievements",
-  info: `V is the fourth Celestial, whose tab can be viewed by completing Achievement 151 (You really didn't need it anyways), requiring you to purchase 800 Antimatter Galaxies without any 8th Dimensions in an Infinity. V's mechanics and Reality, however, has additional unlock requirements. The following requirements must be met at the same time:\n- Complete 10,000 Realities\n- Have 1e60 Reality Machines\n- Have 1e70 Eternities\n- Have 1e160 Infinities\n- Have 1e320 Dilated Time\n- Have 1e320,000 Replicanti\nAll of these requirements must be met at the same time. Note that the progress bars are neither logarithmic nor linear.`,
+  info: `V is the fourth Celestial, whose tab can be viewed by completing Achievement 151 (You really didn't need it anyways), requiring you to purchase 800 Antimatter Galaxies without any 8th Dimensions in an Infinity. V's mechanics and Reality, however, have additional unlock requirements. The following requirements must be met at the same time:\n- Complete 10,000 Realities\n- Have 1e60 Reality Machines\n- Have 1e70 Eternities\n- Have 1e160 Infinities\n- Have 1e320 Dilated Time\n- Have 1e320,000 Replicanti\nNote that the progress bars are neither logarithmic nor linear.`,
   reality: {
     challenge: `Dimension Multipliers, EP gain, IP gain, and Dilated Time gain are all square-rooted. The replicanti interval in seconds is squared. Notably, since Time Theorem generation is still enabled, this reality is relatively easier than Teresa's.\nCreating a new Reality while in V's Reality does not unlock the next Celestial, instead only giving you 1 Space Theorem for the first level of GLyph Knight. To Unlock the next Celestial, you must complete all tiers of all 6 of V's Achievements.`,
     reward: `N/A. See V's Achievements for more details.`
@@ -114,13 +150,13 @@ export const V: VInfo = {
     "youngboy": {
       name: "Young Boy",
       isHard: false,
-      description: "Get {0} Antimatter in Eternity Challenge 12 without unlocking Time Dilation",
+      description: "Get {0} Antimatter in Eternity Challenge 12 without unlocking Time Dilation.",
       values: [400e6, 450e6, 500e6, 600e6, 700e6, 800e6]
     },
     "eternalsunshine": {
       name: "Eternal Sunshine",
       isHard: false,
-      description: "Get {0} Eternity Points",
+      description: "Get {0} Eternity Points.",
       values: ["1e7000", "1e7600", "1e8200", "1e8800", "1e9400", "1e10000"]
     },
     "matterception": {
@@ -138,13 +174,13 @@ export const V: VInfo = {
     "postdestination": {
       name: "Post-destination",
       isHard: true,
-      description: "Get 400,000 Time Theorems with a /{0} Black Hole or slower, without discharging or entering EC12",
+      description: "Get 400,000 Time Theorems with a /{0} Black Hole or slower, without discharging or entering EC12.",
       values: ["1e100", "1e150", "1e200", "1e250", "1e300"]
     },
     "shutterglyph": {
       name: "Shutter Glyph",
       isHard: true,
-      description: "Reach a Glyph of level {0}",
+      description: "Reach a Glyph of level {0}.",
       values: [6500, 7000, 8000, 9000, 10000]
     }
   }
