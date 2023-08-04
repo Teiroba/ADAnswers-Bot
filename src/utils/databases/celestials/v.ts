@@ -1,5 +1,5 @@
 
-import { VAchievement, VUnlock } from "../../../utils/types";
+import { VAchievement, VUnlock } from "../../types";
 import { Colour } from "../../colours";
 import { EmbedBuilder } from "discord.js";
 import { footerText } from "../../../functions/Misc";

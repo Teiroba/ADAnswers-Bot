@@ -1,6 +1,6 @@
 import { AttachmentBuilder, ChatInputCommandInteraction, User } from "discord.js";
 import { authorTitle, isHelper } from "../../../functions/Misc";
-import { V } from "../../../utils/databases/celestials/v";
+import { V } from "../../../utils/databases/celestials/v-concept";
 
 export async function vCelestialSubcommand(interaction: ChatInputCommandInteraction): Promise<void> {
   const infoRequested = interaction.options.getSubcommand();

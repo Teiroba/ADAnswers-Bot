@@ -212,7 +212,7 @@ export type CelestialInfo = {
     // TODO: determine if there exists / should exist a ChallengeInfo type.
     challenge: string,
     reward: string,
-    formula: string
+    formula?: string
   },
   mainMechanic: CelestialMechanic,
   unlocks: Array<CelestialUnlock | ScalingCelestialUnlock>
@@ -231,6 +231,17 @@ export type RelicShopUpgrade = {
   cost: number
 }
 
+export type VAchievement = {
+  name: string,
+  isHard: boolean,
+  description: string,
+  values: Array<number | string>
+}
+
+export type VAchievements = {
+  [key: string]: VAchievement
+}
+
 export type TeresaInfo = CelestialInfo & {
   perkShop: Array<PerkShopUpgrade>
 };
@@ -239,7 +250,9 @@ export type EffarigInfo = CelestialInfo & { }
 
 export type NamelessInfo = CelestialInfo & { }
 
-export type VInfo = CelestialInfo & { }
+export type VInfo = CelestialInfo & {
+  achievements: VAchievements
+}
 
 export type LaitelaInfo = CelestialInfo & { }
 // This applies to ALL the celestials (Requirement, Boost/Reward, possible formula).
@@ -250,19 +263,12 @@ export type TeresaUnlock = {
   requirement: number
 }
 
-
-export type VAchievement = {
+export type _VAchievement = {
   name: string,
   description: string,
   // Completion
   values: Array<number | string>,
   currency: string
-}
-
-export type VUnlock = {
-  reward: string,
-  formula?: string,
-  requirement: number
 }
 
 export type Memory = {

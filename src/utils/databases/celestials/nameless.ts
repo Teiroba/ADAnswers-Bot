@@ -35,7 +35,8 @@ export const NamelessUnlockEmbed = () => new EmbedBuilder()
 export const Nameless: NamelessInfo = {
   name: "The Nameless Ones",
   celestialOf: "Time",
-  info: `The Nameless Ones, the third Celestial, are unlocked by completing Effarig's Eternity.`,
+  // eslint-disable-next-line max-len
+  info: `The Nameless Ones, the third Celestial, are unlocked by completing Effarig's Eternity. They are a group of individuals collectively weilding power over time.\nNotably, completing the Nameless Ones' Reality will not directly unlock the next Celestial.`,
   reality: {
     // eslint-disable-next-line max-len
     challenge: `The Nameless Ones' Reality is extremely limiting. It includes the following nerfs:\n- Infinity and Time Dimensions can each only be purchased once.\n- You can only have 1 8th Antimatter Dimension. (You really don't need it, anyways.)\n- AD Multipliers are Dilated.\n- Study 192 cannot be purchased; you also cannot unlock study 201.\n- The Physics of the Reality does not allow your Black Holes to exist.\n- Tachyon Particle and Dilated Time gain are raised to the power of ^0.3.\n- Time Theorem Generaton from Dilation Glyphs is disabled. You'll need to find Theorems elsewhere.\n- Certain challenge goals are increased. Don't tell your EC Autocompletor.\n- Stored Game Time can be discharged, but the amount of time you get is reduced to ^0.55.\nHowever, there are several "cracks" that you can take advantage of to progress. In addition, the Nameless Ones will boost your Glyphs to be at least level 5000 in this Reality. They'll try to help you find cracks if you get stuck, but the help takes a while.`,
