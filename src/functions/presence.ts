@@ -10,7 +10,7 @@ export const PresenceMessage = {
   last(): string {
     return `${activity.last()} || ${footer.last()}`;
   },
-  next():string {
+  next(): string {
     let next = `${activity.next(true)} || ${footer.next(true)}`;
     if (next.length > 128) next = this.next();
     this.current = next;

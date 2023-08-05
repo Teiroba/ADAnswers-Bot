@@ -70,16 +70,19 @@ export default (client: Client, databases: Sequelize[], tagsArray: ModelStatic<M
     }
 
     async function setBotStatus(): Promise<void> {
-      // First we'll check if I'm listening to anything. If not, we'll use our standard
-      // repertoire of activity presence messages.
-      // This *is* slightly demanding, fetching this every 15 seconds. It is ok
-      const response = await fetch(`${lastfm.api}?method=user.getrecenttracks&user=${lastfm.username}&api_key=${lastfm.key}&format=json`);
-      const data = await response.json();
-      const currentTrack: Track = data.recenttracks.track.filter((track: Track) => track["@attr"] !== undefined)[0] ?? data.recenttracks.track[0];
-      if (currentTrack.date === undefined) {
-        const basicTrackInfo = `${currentTrack.artist["#text"]} - ${currentTrack.name}`;
-        client.user?.setActivity(basicTrackInfo, { type: ActivityType.Listening });
-        return;
+      // Unless you're Earth and running the actual bot, this bit is mostly superfluous.
+      if (lastfm.secret !== "" && lastfm.secret !== undefined) {
+        // First we'll check if I'm listening to anything. If not, we'll use our standard
+        // repertoire of activity presence messages.
+        // This *is* slightly demanding, fetching this every 15 seconds. It is ok
+        const response = await fetch(`${lastfm.api}?method=user.getrecenttracks&user=${lastfm.username}&api_key=${lastfm.key}&format=json`);
+        const data = await response.json();
+        const currentTrack: Track = data.recenttracks.track.filter((track: Track) => track["@attr"] !== undefined)[0] ?? data.recenttracks.track[0];
+        if (currentTrack.date === undefined) {
+          const basicTrackInfo = `${currentTrack.artist["#text"]} - ${currentTrack.name}`;
+          client.user?.setActivity(basicTrackInfo, { type: ActivityType.Listening });
+          return;
+        }
       }
 
       const next = PresenceMessage.next();
