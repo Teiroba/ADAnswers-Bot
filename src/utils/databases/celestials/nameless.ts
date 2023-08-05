@@ -27,7 +27,7 @@ export const NamelessRealityEmbed = () => new EmbedBuilder()
 export const NamelessUnlockEmbed = () => new EmbedBuilder()
   .setTitle("The Nameless Ones' Unlocks")
   .setColor(Colour.nameless)
-  .addFields(Nameless.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} Years of stored Game time`, value: unlock.effect })))
+  .addFields(Nameless.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} years of stored Game time`, value: unlock.effect })))
   .setTimestamp()
   .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
 
@@ -58,7 +58,7 @@ export const Nameless: NamelessInfo = {
     {
       requirement: 1e40,
       // eslint-disable-next-line max-len
-      effect: "Unlock the Nameless Ones' Reality."
+      effect: "Unlock the Nameless Ones' Reality. Additionally requires a 100% Rarity Glyph and a level 5000 Glyph. They do not need to be the same glyph."
     }
   ]
 };

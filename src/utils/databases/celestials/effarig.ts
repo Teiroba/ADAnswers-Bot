@@ -43,13 +43,13 @@ export const Effarig: EffarigInfo = {
     // eslint-disable-next-line max-len
     reward: `Each layer of Effarig's Reality provides different rewards.\n**Effarig's Infinity** raises the Replicanti cap and maximum Replicanti Galaxy amount based on Infinities.\n**Effarig's Eternity** allows you to generate Infinities based on Eternities, and unlocks the Third Celestial, ||The Nameless Ones||.\n**Effarig's Reality** unlocks a new glyph type, called ||Effarig Glyphs||, that can be found on Reality.`,
     // TODO: determine effects of nerfs in Effarig's Reality.
-    formula: "Replicanti cap increase: x`...`\nReplicanti Galaxy limit increase: x`...`"
+    formula: "Replicanti cap increase: x`(Infinities ^ 30) (^4 with TS31)\nReplicanti Galaxy limit increase: +`log(Replicanti cap) / 308.25 - 1`"
   },
   mainMechanic: {
     name: `Relic Shards and Effarig's Shop`,
     // eslint-disable-next-line max-len
     explanation: `Progression with Effarig involves gaining "Relic Shards", a new currency gained on Reality. The immediate effect of these Relic Shards is a boost to Glyph Rarity -- Glyphs will be increased by a random amount based on your current Relic Shards.\nRelic Shards also serve as a currency for Effarig's Shop. Spending Relic Shards unlocks various Quality-of-Life improvements related to Glyphs, and is how you unlock Effarig's Reality.`,
-    formula: "Relic Shard gain: x`...`\nMaximum Glyph Rarity boost: x`...`"
+    formula: "Relic Shard gain: x`(log(EP) / 7500)^(Total Glyph effects)`\nMaximum Glyph Rarity boost: +`5 * log(log(Relic Shards))`%"
   },
   unlocks: [
     {

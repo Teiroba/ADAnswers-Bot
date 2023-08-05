@@ -27,7 +27,7 @@ export const LaitelaRealityEmbed = () => new EmbedBuilder()
 export const LaitelaUnlockEmbed = () => new EmbedBuilder()
   .setTitle("Laitela's Unlocks")
   .setColor(Colour.laitela)
-  .addFields(Laitela.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} Years of stored Game time`, value: unlock.effect })))
+  .addFields(Laitela.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} singularities`, value: unlock.effect })))
   .setTimestamp()
   .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
 
@@ -42,7 +42,7 @@ export const Laitela: LaitelaInfo = {
     challenge: `Infinity Point and Eternity Point gain are Dilated. Game speed is reduced to 1, but increases back to normal over 10 minutes. The Black Hole and the Nameless Ones' mechanics are disabled.\nLike V and Ra, your goal is not to reach e4000 EP and make a new Reality. Instead, you must *destabilize* Lai'tela's Reality as quickly as possible. Antimatter generates Entropy in this Reality. When entropy reaches 100%, the reality is destabilized and you get a reward. If you manage to destabilize the Reality in under 30 seconds, then the highest "active", or producing, dimension is disabled when you attempt the reality again. This causes that dimension number to no longer produce the dimension below it. This applies to the three main dimension types (Antimatter, Infinity, Time). The Reality becomes fully destabilized when you disable all 8 dimensions.`,
     // eslint-disable-next-line max-len
     reward: `You will gain a multiplier to Dark Matter Dimensions based on how quickly you destabilized Lai'tela's Realty, and how many dimensions were disabled when you did so. If you destabilize it to the point where all dimensions are disabled, then you will also get an 8x multiplier to Dark Energy gain.`,
-    formula: "+`500000 * 2 ^ (tesseracts - 1)` ID purchases"
+    formula: "+`360 / (Time in reality, in seconds) * 100 ^ (Dimensions disabled)`"
   },
   mainMechanic: {
     name: `Dark Matter Dimensions, Dark Matter, and Dark Energy`,
