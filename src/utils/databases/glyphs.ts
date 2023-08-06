@@ -1,9 +1,9 @@
-import { EmbedBuilder, EmbedField } from "discord.js";
 import { GlyphEffect, GlyphInfo } from "../types";
 import { Colour } from "../colours";
+import { EmbedField } from "discord.js";
+import { EmbedWithFooter } from "../../functions/Misc";
 import { Symbols } from "../symbols";
 import { capitalize } from "../extensions";
-import { footerText } from "../../functions/Misc";
 
 interface GlyphData {
   [key: string]: GlyphInfo
@@ -525,9 +525,7 @@ function SymbolGetter(glyphInfo: GlyphInfo, isADServer: boolean) {
 }
 
 // eslint-disable-next-line max-params
-export const GlyphEmbedGetter = (glyphInfo: GlyphInfo, isADServer: boolean, altered: boolean, isSacrifice: boolean) => new EmbedBuilder()
+export const GlyphEmbedGetter = (glyphInfo: GlyphInfo, isADServer: boolean, altered: boolean, isSacrifice: boolean) => EmbedWithFooter()
   .setTitle(`**${SymbolGetter(glyphInfo, isADServer)}** ${capitalize(glyphInfo.name)}`)
   .setColor(glyphInfo.colour)
-  .addFields(FieldsGetter(glyphInfo, altered, isSacrifice))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldsGetter(glyphInfo, altered, isSacrifice));

@@ -1,36 +1,31 @@
 import { Colour } from "../../colours";
 import { EffarigInfo } from "../../types";
-import { EmbedBuilder } from "discord.js";
-import { footerText } from "../../../functions/Misc";
+import { EmbedWithFooter } from "../../../functions/Misc";
 import { format } from "../../format";
 
-export const EffarigBasicInfoEmbed = () => new EmbedBuilder()
+export const EffarigBasicInfoEmbed = () => EmbedWithFooter()
   .setTitle("Effarig, the Celestial of Ancient Relics")
   .setColor(Colour.effarig)
   .addFields(
     { name: " ", value: Effarig.info },
     { name: Effarig.mainMechanic.name, value: Effarig.mainMechanic.explanation },
     { name: "Formula", value: Effarig.mainMechanic.formula! }
-  )
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  );
 
-export const EffarigRealityEmbed = () => new EmbedBuilder()
+export const EffarigRealityEmbed = () => EmbedWithFooter()
   .setTitle("Effarig's Reality")
   .setColor(Colour.effarig)
   .addFields(
     { name: "Challenge", value: Effarig.reality.challenge },
     { name: "Reward", value: `${Effarig.reality.reward}\nFormula: ${Effarig.reality.formula}` },
-  )
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  );
 
-export const EffarigUnlockEmbed = () => new EmbedBuilder()
+export const EffarigUnlockEmbed = () => EmbedWithFooter()
   .setTitle("Effarig's Unlocks")
   .setColor(Colour.effarig)
-  .addFields(Effarig.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} Relic Shards`, value: unlock.effect })))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(
+    Effarig.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} Relic Shards`, value: unlock.effect }))
+  );
 
 
 export const Effarig: EffarigInfo = {

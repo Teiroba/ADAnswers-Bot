@@ -1,6 +1,6 @@
-import { EmbedBuilder, EmbedField } from "discord.js";
-import { footerText, pluralise } from "../../functions/Misc";
+import { EmbedWithFooter, pluralise } from "../../functions/Misc";
 import { Colour } from "../colours";
+import { EmbedField } from "discord.js";
 import { UpgradeInfo } from "../types";
 import { formatNumber } from "../../utils/format";
 
@@ -865,54 +865,44 @@ const FieldGetter = {
   },
 };
 
-const InfinityUpgrade = (upgradeInfo: UpgradeInfo) => new EmbedBuilder()
+// TODO: determine viability of generic function akin to that in Perks.
+
+const InfinityUpgrade = (upgradeInfo: UpgradeInfo) => EmbedWithFooter()
   .setTitle(upgradeInfo.name)
   .setColor(Colour.infinity)
-  .addFields(FieldGetter.infinity(upgradeInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter.infinity(upgradeInfo));
 
-const ChargedInfinityUpgrade = (upgradeInfo: UpgradeInfo) => new EmbedBuilder()
+const ChargedInfinityUpgrade = (upgradeInfo: UpgradeInfo) => EmbedWithFooter()
   .setTitle(upgradeInfo.name)
   .setColor(Colour.celestial)
-  .addFields(FieldGetter.charged(upgradeInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter.charged(upgradeInfo));
 
-const BreakInfinityUpgrade = (upgradeInfo: UpgradeInfo) => new EmbedBuilder()
+const BreakInfinityUpgrade = (upgradeInfo: UpgradeInfo) => EmbedWithFooter()
   .setTitle(upgradeInfo.name)
   .setColor(Colour.infinity)
-  .addFields(FieldGetter.breakInfinity(upgradeInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter.breakInfinity(upgradeInfo));
 
-const EternityUpgrade = (upgradeInfo: UpgradeInfo) => new EmbedBuilder()
+const EternityUpgrade = (upgradeInfo: UpgradeInfo) => EmbedWithFooter()
   .setTitle(upgradeInfo.name)
   .setColor(Colour.eternity)
-  .addFields(FieldGetter.eternity(upgradeInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter.eternity(upgradeInfo));
 
-const DilationUpgrade = (upgradeInfo: UpgradeInfo) => new EmbedBuilder()
+const DilationUpgrade = (upgradeInfo: UpgradeInfo) => EmbedWithFooter()
   .setTitle(upgradeInfo.name)
   .setColor(Colour.dilation)
-  .addFields(FieldGetter.dilation(upgradeInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter.dilation(upgradeInfo));
 
-const RealityUpgrade = (upgradeInfo: UpgradeInfo) => new EmbedBuilder()
+const RealityUpgrade = (upgradeInfo: UpgradeInfo) => EmbedWithFooter()
   .setTitle(upgradeInfo.name)
   .setColor(Colour.reality)
-  .addFields(FieldGetter.reality(upgradeInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter.reality(upgradeInfo));
 
-const ImaginaryUpgrade = (upgradeInfo: UpgradeInfo) => new EmbedBuilder()
+const ImaginaryUpgrade = (upgradeInfo: UpgradeInfo) => EmbedWithFooter()
   .setTitle(upgradeInfo.name)
   .setColor(Colour.imaginary)
-  .addFields(FieldGetter.imaginary(upgradeInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter.imaginary(upgradeInfo));
+
+// TODO: Duplicate exists in Perks and potentially elsewhere.
 interface EmbedGetters {
   [key: string]: Function;
 }

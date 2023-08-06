@@ -1,7 +1,7 @@
-import { EmbedBuilder, EmbedField } from "discord.js";
 import { Colour } from "../../colours";
+import { EmbedField } from "discord.js";
+import { EmbedWithFooter } from "../../../functions/Misc";
 import { RaCelestial } from "../../../utils/types";
-import { footerText } from "../../../functions/Misc";
 
 interface MemoryData {
   [key: string]: RaCelestial
@@ -18,7 +18,7 @@ export const raMemories: MemoryData = {
       "1": {
         level: 1,
         effect: {
-          effect: "Tachyon Particles are given immediately when Time Dilation is active"
+          effect: "Tachyon Particles are given immediately when Time Dilation is active. This is effectively TS181 for Tachyons."
         }
       },
       "2": {
@@ -44,19 +44,19 @@ export const raMemories: MemoryData = {
       "10": {
         level: 10,
         effect: {
-          effect: "Unlock Altered Glyphs, which grant new effects to Glyphs based on Glyph Sacrifice"
+          effect: "Unlock Altered Glyphs, which grant new effects to Glyphs based on Glyph Sacrifice. "
         }
       },
       "15": {
         level: 15,
         effect: {
-          effect: "Purchase caps are raised in Teresa's Perk Point Shop"
+          effect: "Purchase caps are raised in Teresa's Perk Point Shop."
         }
       },
       "25": {
         level: 25,
         effect: {
-          effect: "In non-Celestial Realities, gain Tachyon Particles as if you reached the square root of your total antimatter in Dilation. Any multipliers to TP gain are applied retroactively, even outside Dilation"
+          effect: "In non-Celestial Realities, gain Tachyon Particles as if you reached the square root of your total antimatter in Dilation. Any multipliers to TP gain are applied retroactively, even outside Dilation."
         }
       }
     }
@@ -71,7 +71,7 @@ export const raMemories: MemoryData = {
       "1": {
         level: 1,
         effect: {
-          effect: "Get 2x Glyph choices and the bonus to Glyph rarity from Relic Shards is always its maximum value"
+          effect: "Get 2x Glyph choices.\nThe bonus to Glyph rarity from Relic Shards is always its maximum value."
         }
       },
       "2": {
@@ -90,32 +90,34 @@ export const raMemories: MemoryData = {
       "8": {
         level: 8,
         effect: {
-          effect: "Unlock Nameless' Memories"
+          effect: "Unlock The Nameless Ones' Memories"
         }
       },
       "10": {
         level: 10,
         effect: {
-          effect: `Glyphs always have 4 effects, and Effarig Glyphs can now have up to 7`
+          effect: `New Glyphs always generate with 4 effects. \nEffarig Glyphs have a chance to generate with all 7 effects.`
         }
       },
       "15": {
         level: 15,
         effect: {
-          effect: "Glyph level is increased based on Relic Shards gained",
-          formula: "`100 * log10(max(shards, 1))^2`"
+          effect: "Glyph level is increased based on Relic Shards gained. This bonus is added after the glyph level factors are multiplied together, but before glyph instability.",
+          formula: "+`100 * log10(max(shards, 1))^2`"
         }
       },
       "25": {
         level: 25,
         effect: {
-          effect: "Glyphs are always generated with 100% rarity and Glyph Sacrifice gain is raised to a power based on Relic Shards"
+          effect: "Glyphs are always generated with 100% (Celestial) rarity.\nGlyph Sacrifice gain is raised to a power based on Relic Shards.",
+          // TODO: formula.
+          formula: "^`...`"
         }
       }
     }
   },
   "nameless": {
-    name: "Nameless",
+    name: "The Nameless Ones",
     chunkGain: {
       currency: "Time Shards",
       formula: "`4 * (log10(shards) / 3e5)^2`"
@@ -138,6 +140,7 @@ export const raMemories: MemoryData = {
         level: 5,
         effect: {
           effect: "All Memory Chunks produce more Memories based on total time played",
+          // TODO: Determine if this is seconds, ms, years, or something else.
           formula: "x`1 + log10(time played) / 200`"
         }
       },
@@ -150,7 +153,7 @@ export const raMemories: MemoryData = {
       "10": {
         level: 10,
         effect: {
-          effect: `Black Hole charging now only uses 99% of your game speed and you can automatically discharge 1% of your stored game time every 5 ticks.`
+          effect: `Black Hole charging now only uses 99% of your game speed and you can automatically "Pulse", or discharge 1% of your stored game time every 5 ticks.`
         }
       },
       "15": {
@@ -163,7 +166,7 @@ export const raMemories: MemoryData = {
       "25": {
         level: 25,
         effect: {
-          effect: "All basic Glyphs gain the increased game speed effect from Time Glyphs, and Time Glyphs gain an additional effect"
+          effect: "All basic Glyphs gain the increased game speed effect from Time Glyphs, and Time Glyphs gain an additional effect: ||Raise Time Shard gain to a power||."
         }
       }
     }
@@ -178,7 +181,7 @@ export const raMemories: MemoryData = {
       "1": {
         level: 1,
         effect: {
-          effect: "Rebuyable Reality upgrades are bought automatically and Auto-Eternity Challenges happen instantly"
+          effect: "Rebuyable Reality upgrades are bought automatically. \nAuto-Eternity Challenges happen instantly, overriding the relevant V milestone."
         }
       },
       "2": {
@@ -197,7 +200,7 @@ export const raMemories: MemoryData = {
       "6": {
         level: 6,
         effect: {
-          effect: "Unlock Hard V-Achievements and unlock a Triad Study every 6 levels. Triad Studies are located at the bottom of the Time Studies page"
+          effect: "Unlock Hard V-Achievements and unlock a Triad Study every 6 levels. Triad Studies are located at the bottom of the Time Studies page, cost 10 ST each, and require the 3 studies surrounding them to be purchased."
         }
       },
       "10": {
@@ -249,12 +252,10 @@ function FieldsGetter(celestial: RaCelestial): EmbedField[] {
   return fields;
 }
 
-export const RaCelestialEmbedGetter = (celestial: RaCelestial) => new EmbedBuilder()
+export const RaCelestialEmbedGetter = (celestial: RaCelestial) => EmbedWithFooter()
   .setTitle(`${celestial.name}`)
   .setColor(Colour[celestial.name.toLowerCase()])
-  .addFields(FieldsGetter(celestial))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldsGetter(celestial));
 
 export const Ra = {
   /* eslint-disable max-len */

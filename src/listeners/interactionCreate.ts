@@ -2,7 +2,6 @@ import { ActionRowBuilder,
   ChatInputCommandInteraction,
   Client,
   Colors,
-  EmbedBuilder,
   Interaction,
   MessageContextMenuCommandInteraction,
   ModalBuilder,
@@ -10,12 +9,12 @@ import { ActionRowBuilder,
   TextChannel,
   TextInputBuilder,
   TextInputStyle } from "discord.js";
+import { EmbedWithFooter, link } from "../functions/Misc";
 import { incrementBigFourTags, incrementTag } from "../functions/database";
 import { AutocompleteCommand } from "../command";
 import { Commands } from "../commands";
 import { InteractionEvents } from "../classes/events/InteractionEvents";
 import { ids } from "../config.json";
-import { link } from "../functions/Misc";
 import { tags } from "../bot";
 
 let currentMessageBeingReported: MessageContextMenuCommandInteraction;
@@ -89,10 +88,9 @@ const handleContextMenu = async(interaction: MessageContextMenuCommandInteractio
 const handleModalSubmit = async(interaction: MessageContextMenuCommandInteraction, modalSubmitInteraction: ModalSubmitInteraction) => {
   const reason = modalSubmitInteraction.fields.getTextInputValue("report-message-input");
 
-  const messageReportEmbed = new EmbedBuilder()
+  const messageReportEmbed = EmbedWithFooter("")
     .setTitle("Message reported")
     .setColor(Colors.Red)
-    .setTimestamp()
     .setFields(
       { name: "Reason", value: `Reported by <@${interaction.user.id}> because: ${reason.substring(0, 400)}` },
       { name: `Message`, value: `${interaction.targetMessage.content.substring(0, 400)}${interaction.targetMessage.content.length > 400 ? "..." : ""} \n ${link("__**[link]**__", interaction.targetMessage.url)}` },

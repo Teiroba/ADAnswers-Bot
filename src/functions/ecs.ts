@@ -2,7 +2,7 @@ import { AttachmentBuilder, EmbedBuilder } from "discord.js";
 import { EC, ECsAtTTInfo } from "../utils/types";
 import { ECDescriptions, ECRewards, EternityChallenges, findEC, order, orderAsECs } from "../utils/databases/eternitychallenges";
 import { Colour } from "../utils/colours";
-import { footerText } from "./Misc";
+import { EmbedWithFooter } from "./Misc";
 
 function findCompletionsAtIndex(indexOfCompletion: number): string {
   const completions = Array(12);
@@ -80,11 +80,10 @@ export function ecsAtTTAmount(tt: number): ECsAtTTInfo | string {
   };
 }
 
-export const eternityChallengeEmbedBuilder = (challengeInfo: EC, requestedFields?: string): EmbedBuilder => new EmbedBuilder()
+export const eternityChallengeEmbedBuilder = (challengeInfo: EC, requestedFields?: string): EmbedBuilder => EmbedWithFooter()
   .setTitle(`Eternity Challenge ${challengeInfo.challenge}x${challengeInfo.completion}`)
   .setColor(Colour.eternity)
-  .addFields(shownFields(challengeInfo, requestedFields))
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(shownFields(challengeInfo, requestedFields));
 
 function ecRequirements(ec: EC) {
   if (ec.challenge === 11 || ec.challenge === 12) return `${ec.unlock.amount} and 1 Time Theorem`;

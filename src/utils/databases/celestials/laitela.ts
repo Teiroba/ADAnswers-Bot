@@ -1,35 +1,29 @@
 import { Colour } from "../../colours";
-import { EmbedBuilder } from "discord.js";
+import { EmbedWithFooter } from "../../../functions/Misc";
 import { LaitelaInfo } from "../../types";
-import { footerText } from "../../../functions/Misc";
 import { format } from "../../format";
 
-export const LaitelaBasicInfoEmbed = () => new EmbedBuilder()
+export const LaitelaBasicInfoEmbed = () => EmbedWithFooter()
   .setTitle("Laitela, the Celestial of Dimensions")
   .setColor(Colour.laitela)
   .addFields(
     { name: " ", value: Laitela.info },
     { name: Laitela.mainMechanic.name, value: Laitela.mainMechanic.explanation },
-  )
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  );
 
-export const LaitelaRealityEmbed = () => new EmbedBuilder()
+export const LaitelaRealityEmbed = () => EmbedWithFooter()
   .setTitle("Laitela's Reality")
   .setColor(Colour.laitela)
   .addFields(
     { name: "Challenge", value: Laitela.reality.challenge },
     { name: "Reward", value: `${Laitela.reality.reward}\nFormula: ${Laitela.reality.formula}` },
-  )
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  );
 
-export const LaitelaUnlockEmbed = () => new EmbedBuilder()
+export const LaitelaUnlockEmbed = () => EmbedWithFooter()
   .setTitle("Laitela's Unlocks")
   .setColor(Colour.laitela)
-  .addFields(Laitela.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} singularities`, value: unlock.effect })))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  // TODO: Too many milestones. What, if anything, should we put here? Maybe a cross-reference to the Singularity command.
+  .addFields(Laitela.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} singularities`, value: unlock.effect })));
 
 
 export const Laitela: LaitelaInfo = {

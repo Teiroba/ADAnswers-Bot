@@ -1,4 +1,4 @@
-import { footerText, makeEnumeration, quantify } from "./Misc";
+import { EmbedWithFooter, makeEnumeration, quantify } from "./Misc";
 import { Colour } from "../utils/colours";
 import { EmbedBuilder } from "discord.js";
 import { StudyInfo } from "../utils/types";
@@ -29,13 +29,10 @@ function getFields(studyInfo: StudyInfo) {
   return fields;
 }
 
-export const TimeStudy = (studyInfo: StudyInfo): EmbedBuilder => new EmbedBuilder()
+export const TimeStudy = (studyInfo: StudyInfo): EmbedBuilder => EmbedWithFooter()
   .setTitle(`Time Study ${studyInfo.id}`)
   .setColor(Colour[studyInfo.type])
-  // .setColor(studyInfo.colour as ColorResolvable)
-  .addFields(getFields(studyInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(getFields(studyInfo));
 
 export function getAffordableStudiesFromStudyList(list: number[], theorems: number) {
   let remainingTheorems = theorems;

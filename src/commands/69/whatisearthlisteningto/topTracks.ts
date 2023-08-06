@@ -1,5 +1,5 @@
-import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, EmbedBuilder, InteractionReplyOptions, MessageComponentInteraction, StringSelectMenuBuilder, User } from "discord.js";
-import { authorTitle, isHelper, link } from "../../../functions/Misc";
+import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, InteractionReplyOptions, MessageComponentInteraction, StringSelectMenuBuilder, User } from "discord.js";
+import { EmbedWithFooter, authorTitle, isHelper, link } from "../../../functions/Misc";
 import fetch from "node-fetch";
 import { lastfm } from "../../../config.json";
 
@@ -43,12 +43,10 @@ const getNextPage = (currentPage: number, up: boolean) => {
   return possiblePages[index];
 };
 
-const getEmbed = (track: Track) => new EmbedBuilder()
+const getEmbed = (track: Track) => EmbedWithFooter(`Data from LastFM`)
   .setTitle(track.name)
   .setDescription(track.artist.name)
   .setColor(`DarkVividPink`)
-  .setTimestamp()
-  .setFooter({ text: "Data from LastFM", iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` })
   .addFields(fields(track));
 
 const fields = (track: Track) => [

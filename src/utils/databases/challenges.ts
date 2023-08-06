@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import { EmbedBuilder, EmbedField } from "discord.js";
+import { EmbedWithFooter, link } from "../../functions/Misc";
 import { Colour } from "../colours";
-import { link } from "../../functions/Misc";
 
 const base = ` It is recommended to have at least the first 12 infinity upgrades and 100 spare IP.
  If you want to get those 100 IP, you probably want to get upgrade 13 and 14 as well to speed things up. (Note: Those upgrades won't work inside challenges.)`;
@@ -241,8 +241,6 @@ Video guide: <https://youtu.be/lI70hBlpaqc>`,
   },
 };
 
-const footerText = (): string => (Math.random() > 0.5 ? `Be sure to read the pins in your progression channel!` : `Art by @mrkrutaman`);
-
 export const shownFields = (challengeInfo: ChallengeInfo, requestedFields?: string): EmbedField[] => {
   switch (requestedFields) {
     case "unlock": return [{ name: "Unlock requirements", value: `${challengeInfo.requirements}`, inline: false }];
@@ -268,19 +266,15 @@ export const shownFields = (challengeInfo: ChallengeInfo, requestedFields?: stri
   }
 };
 
-export const normalChallenge = (challengeInfo: ChallengeInfo): EmbedBuilder => new EmbedBuilder()
+export const normalChallenge = (challengeInfo: ChallengeInfo): EmbedBuilder => EmbedWithFooter()
   .setTitle(`Challenge ${challengeInfo.number}`)
   .setColor(Colour.antimatter)
-  .setFields(shownFields(challengeInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .setFields(shownFields(challengeInfo));
 
-export const infinityChallenge = (challengeInfo: ChallengeInfo): EmbedBuilder => new EmbedBuilder()
+export const infinityChallenge = (challengeInfo: ChallengeInfo): EmbedBuilder => EmbedWithFooter()
   .setTitle(`Infinity Challenge ${challengeInfo.number}`)
   .setColor(Colour.infinity)
-  .addFields(shownFields(challengeInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(shownFields(challengeInfo));
 
 // We use this to create base embeds, just so we don't have to recreate them every time.
 

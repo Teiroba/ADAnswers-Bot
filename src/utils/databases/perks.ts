@@ -1,6 +1,6 @@
-import { EmbedBuilder, EmbedField } from "discord.js";
-import { footerText, makeEnumeration } from "../../functions/Misc";
+import { EmbedWithFooter, makeEnumeration } from "../../functions/Misc";
 import { Colour } from "../colours";
+import { EmbedField } from "discord.js";
 import { PerkInfo } from "../types";
 
 interface PerkList {
@@ -380,54 +380,46 @@ function FieldGetter(perkInfo: PerkInfo): EmbedField[] {
   return fields;
 }
 
-const AchievementPerk = (perkInfo: PerkInfo) => new EmbedBuilder()
+// TODO: Setup this function to replace the other perks which have very similar code.
+// const PerkEmbed = (perkInfo: PerkInfo, colour: ColorResolvable) => EmbedWithFooter()
+//   .setTitle(perkInfo.name)
+//   .setColor(colour)
+//   .addFields(FieldGetter(perkInfo));
+
+const AchievementPerk = (perkInfo: PerkInfo) => EmbedWithFooter()
   .setTitle(perkInfo.name)
   .setColor(Colour.achievement)
-  .addFields(FieldGetter(perkInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter(perkInfo));
 
-const AntimatterPerk = (perkInfo: PerkInfo) => new EmbedBuilder()
+const AntimatterPerk = (perkInfo: PerkInfo) => EmbedWithFooter()
   .setTitle(perkInfo.name)
   .setColor(Colour.antimatter)
-  .addFields(FieldGetter(perkInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter(perkInfo));
 
-const AutomationPerk = (perkInfo: PerkInfo) => new EmbedBuilder()
+const AutomationPerk = (perkInfo: PerkInfo) => EmbedWithFooter()
   .setTitle(perkInfo.name)
   .setColor(Colour.automation)
-  .addFields(FieldGetter(perkInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter(perkInfo));
 
-const InfinityPerk = (perkInfo: PerkInfo) => new EmbedBuilder()
+const InfinityPerk = (perkInfo: PerkInfo) => EmbedWithFooter()
   .setTitle(perkInfo.name)
   .setColor(Colour.infinity)
-  .addFields(FieldGetter(perkInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter(perkInfo));
 
-const EternityPerk = (perkInfo: PerkInfo) => new EmbedBuilder()
+const EternityPerk = (perkInfo: PerkInfo) => EmbedWithFooter()
   .setTitle(perkInfo.name)
   .setColor(Colour.eternity)
-  .addFields(FieldGetter(perkInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter(perkInfo));
 
-const DilationPerk = (perkInfo: PerkInfo) => new EmbedBuilder()
+const DilationPerk = (perkInfo: PerkInfo) => EmbedWithFooter()
   .setTitle(perkInfo.name)
   .setColor(Colour.dilation)
-  .addFields(FieldGetter(perkInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter(perkInfo));
 
-const RealityPerk = (perkInfo: PerkInfo) => new EmbedBuilder()
+const RealityPerk = (perkInfo: PerkInfo) => EmbedWithFooter()
   .setTitle(perkInfo.name)
   .setColor(Colour.reality)
-  .addFields(FieldGetter(perkInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(FieldGetter(perkInfo));
 
 interface EmbedGetters {
   [key: string]: Function;

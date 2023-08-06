@@ -1,49 +1,41 @@
 /* eslint-disable max-len */
 
+import { EmbedWithFooter, quantify } from "../../../functions/Misc";
 import { VAchievement, VInfo } from "../../types";
-import { footerText, pluralise } from "../../../functions/Misc";
 import { Colour } from "../../colours";
 import { EmbedBuilder } from "discord.js";
 import { format } from "../../format";
 
-export const VBasicInfoEmbed = () => new EmbedBuilder()
+export const VBasicInfoEmbed = () => EmbedWithFooter()
   .setTitle("V, the Celestial of Achievements")
   .setColor(Colour.v)
   .addFields(
     { name: " ", value: V.info },
     { name: V.mainMechanic.name, value: V.mainMechanic.explanation }
-  )
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  );
 
-export const VRealityEmbed = () => new EmbedBuilder()
+export const VRealityEmbed = () => EmbedWithFooter()
   .setTitle("V's Reality")
   .setColor(Colour.v)
   .addFields(
     { name: "Challenge", value: V.reality.challenge },
     { name: "Reward", value: `${V.reality.reward}` }
-  )
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  );
 
-export const VUnlocksEmbed = () => new EmbedBuilder()
+export const VUnlocksEmbed = () => EmbedWithFooter()
   .setTitle("V Unlocks")
   .setColor(Colour.v)
-  .addFields(V.unlocks.map(unlock => ({ name: `At ${unlock.requirement} Space Theorems`, value: `${unlock.effect}\n${unlock.formula ? `Formula: ${unlock.formula}` : ""}`, inline: false })))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(V.unlocks.map(unlock => ({ name: `At ${unlock.requirement} Space Theorems`, value: `${unlock.effect}\n${unlock.formula ? `Formula: ${unlock.formula}` : ""}`, inline: false })));
 
 export function VAllBasicAchievementsEmbed(): EmbedBuilder {
   const nonHardAchievements = Object.keys(V.achievements).filter(x => !V.achievements[x].isHard);
-  return new EmbedBuilder()
+  return EmbedWithFooter()
     .setTitle("V's Achievements")
     .setColor(Colour.v)
     .addFields(
       // Weird. TS refuses to allow the existence of optional parameters. I'd sooner expect ESLint to yell at me.
       nonHardAchievements.map(x => ({ name: V.achievements[x].name, value: formatVAchievement(x, null), inline: false }))
-    )
-    .setTimestamp()
-    .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+    );
 }
 
 export function VAchievementEmbed(achievementId: string, tier: number | null): EmbedBuilder {
@@ -53,15 +45,14 @@ export function VAchievementEmbed(achievementId: string, tier: number | null): E
   if (isValidAchievementTier(achievementId, tier)) {
     title += ` Tier ${tier}`;
   }
-  return new EmbedBuilder()
+
+  return EmbedWithFooter()
     .setTitle(title)
     .setColor(Colour.v)
     .addFields(
       { name: "Requirement", value: formatVAchievement(achievementId, tier), inline: false },
-      { name: "Reward", value: `${reward} ${pluralise("Space Theorem", reward)}` }
-    )
-    .setTimestamp()
-    .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+      { name: "Reward", value: quantify("Space Theorem", reward) }
+    );
 }
 
 function isValidAchievementTier(achievementId: string, tier: number | null): boolean {
@@ -173,7 +164,7 @@ export const V: VInfo = {
     "postdestination": {
       name: "Post-destination",
       isHard: true,
-      description: "Get 400,000 Time Theorems with a /{0} Black Hole or slower, without discharging or entering EC12.",
+      description: "Get 400,000 Time Theorems with a 1/{0} Black Hole or slower, without discharging or entering EC12.",
       values: ["1e100", "1e150", "1e200", "1e250", "1e300"]
     },
     "shutterglyph": {

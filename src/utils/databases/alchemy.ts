@@ -1,5 +1,5 @@
 import { AttachmentBuilder, EmbedBuilder, EmbedField } from "discord.js";
-import { footerText, makeEnumeration, quantify } from "../../functions/Misc";
+import { EmbedWithFooter, makeEnumeration, quantify } from "../../functions/Misc";
 import { AlchemyResource } from "../types";
 import { Colour } from "../colours";
 import { Symbols } from "../symbols";
@@ -421,10 +421,9 @@ for (const resource in alchemyResources) {
   // These don't have IDs, so we'll use their unlocksAt value to find a place in the array
   const res = alchemyResources[resource];
   AlchemyImages[res.unlocksAt] = new AttachmentBuilder(`src/images/alchemy/${res.name.toLowerCase()}.png`);
-  AlchemyEmbeds[res.unlocksAt] = new EmbedBuilder()
+  AlchemyEmbeds[res.unlocksAt] = EmbedWithFooter()
     .setTitle(`${res.symbol} ${res.name}`)
     .setColor(Colour.reality)
     .addFields(getAlchemyCommandFields(res))
-    .setThumbnail(`attachment://${res.name.toLowerCase()}.png`)
-    .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+    .setThumbnail(`attachment://${res.name.toLowerCase()}.png`);
 }

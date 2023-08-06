@@ -1,35 +1,28 @@
 import { Colour } from "../../colours";
-import { EmbedBuilder } from "discord.js";
+import { EmbedWithFooter } from "../../../functions/Misc";
 import { NamelessInfo } from "../../types";
-import { footerText } from "../../../functions/Misc";
 import { format } from "../../format";
 
-export const NamelessBasicInfoEmbed = () => new EmbedBuilder()
+export const NamelessBasicInfoEmbed = () => EmbedWithFooter()
   .setTitle("The Nameless Ones, Celestial of Time")
   .setColor(Colour.nameless)
   .addFields(
     { name: " ", value: Nameless.info },
     { name: Nameless.mainMechanic.name, value: Nameless.mainMechanic.explanation },
-  )
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  );
 
-export const NamelessRealityEmbed = () => new EmbedBuilder()
+export const NamelessRealityEmbed = () => EmbedWithFooter()
   .setTitle("The Nameless Ones' Reality")
   .setColor(Colour.nameless)
   .addFields(
     { name: "Challenge", value: Nameless.reality.challenge },
     { name: "Reward", value: `${Nameless.reality.reward}\nFormula: ${Nameless.reality.formula}` },
-  )
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  );
 
-export const NamelessUnlockEmbed = () => new EmbedBuilder()
+export const NamelessUnlockEmbed = () => EmbedWithFooter()
   .setTitle("The Nameless Ones' Unlocks")
   .setColor(Colour.nameless)
-  .addFields(Nameless.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} years of stored Game time`, value: unlock.effect })))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(Nameless.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} years of stored Game time`, value: unlock.effect })));
 
 
 export const Nameless: NamelessInfo = {

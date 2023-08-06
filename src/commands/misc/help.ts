@@ -1,5 +1,6 @@
-import { ActionRowBuilder, ApplicationCommandType, AttachmentBuilder, ButtonBuilder, ButtonStyle, CommandInteraction, EmbedBuilder, InteractionReplyOptions, MessageComponentInteraction, StringSelectMenuBuilder } from "discord.js";
+import { ActionRowBuilder, ApplicationCommandType, AttachmentBuilder, ButtonBuilder, ButtonStyle, CommandInteraction, InteractionReplyOptions, MessageComponentInteraction, StringSelectMenuBuilder } from "discord.js";
 import { Command } from "../../command";
+import { EmbedWithFooter } from "../../functions/Misc";
 import { commandsByPage } from "../../commands";
 import config from "../../config.json";
 
@@ -15,12 +16,10 @@ const getNextPage = (currentPage: number, up: boolean) => {
   return possiblePages[index];
 };
 
-const getEmbed = (currentPage: number) => new EmbedBuilder()
+const getEmbed = (currentPage: number) => EmbedWithFooter(`This superfluous bot was created by @earth1337_\nBot version: ${config.version}`)
   .setTitle(`Help (p${currentPage}/9)`)
   .setDescription(`A comprehensive list of commands.`)
   .setColor(`#${currentPage === 69 ? "696969" : Math.round(currentPage / 9 * 255).toString(16).repeat(3)}`)
-  .setTimestamp()
-  .setFooter({ text: `This superfluous bot was created by @earth1337_\nBot version: ${config.version}`, iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` })
   .addFields(fields(currentPage))
   .setThumbnail("attachment://help.png");
 

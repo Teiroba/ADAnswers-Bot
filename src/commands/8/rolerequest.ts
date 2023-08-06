@@ -1,5 +1,5 @@
-import { ActionRowBuilder, ApplicationCommandOptionType, ApplicationCommandType, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, Colors, ComponentType, EmbedBuilder, MessageComponentInteraction, Role } from "discord.js";
-import { isEligibleForHelper, isHelper } from "../../functions/Misc";
+import { ActionRowBuilder, ApplicationCommandOptionType, ApplicationCommandType, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, Colors, ComponentType, MessageComponentInteraction, Role } from "discord.js";
+import { EmbedWithFooter, isEligibleForHelper, isHelper } from "../../functions/Misc";
 import { Command } from "../../command";
 import { ids } from "../../config.json";
 
@@ -16,13 +16,12 @@ const runRoleRequest = async(roleName: string, hasRole: boolean, fieldContent: s
     ? { name: `Removing the "${roleName}" role will...`, value: fieldContent[0] }
     : { name: `Adding the "${roleName}" role will...`, value: fieldContent[1] };
 
-  const embed = (disabled: boolean) => new EmbedBuilder()
+  const embed = (disabled: boolean) => EmbedWithFooter("")
     .setColor(Colors.DarkAqua)
     .setTitle(`${roleName} Role Request`)
     .setDescription(`Are you sure you want to ${hasRole ? "remove" : "add"} the "${roleName}" role?\nExpire${disabled ? "d" : "s"} <t:${expirationTimestamp}:R> at <t:${expirationTimestamp}:T>`)
     .setThumbnail(interaction.user.displayAvatarURL())
-    .addFields(field)
-    .setTimestamp();
+    .addFields(field);
 
   const buttons = (disabled: boolean) => new ActionRowBuilder<ButtonBuilder>()
     .addComponents(

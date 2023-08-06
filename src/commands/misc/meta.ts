@@ -1,5 +1,5 @@
-import { ActionRowBuilder, ApplicationCommandType, ButtonBuilder, ButtonStyle, Colors, CommandInteraction, EmbedBuilder, EmbedField, InteractionReplyOptions, MessageComponentInteraction, User } from "discord.js";
-import { authorTitle, isHelper, link } from "../../functions/Misc";
+import { ActionRowBuilder, ApplicationCommandType, ButtonBuilder, ButtonStyle, Colors, CommandInteraction, EmbedField, InteractionReplyOptions, MessageComponentInteraction, User } from "discord.js";
+import { EmbedWithFooter, authorTitle, isHelper, link } from "../../functions/Misc";
 import { dhmsFromMS, getTimezoneFromDate } from "../../functions/time";
 import { getTagInfo, parsePlayersList, parseTimeList, parseUsersList } from "../../functions/database";
 import { Command } from "../../command";
@@ -90,13 +90,11 @@ const metaFields = (interaction: CommandInteraction, tagInfo: TagInfo): { [key: 
 
 // Sorry
 // eslint-disable-next-line max-params
-const embed = (currentPage: number, interaction: CommandInteraction, disabled: boolean, expirationTimestamp: number, tagInfo: TagInfo) => new EmbedBuilder()
+const embed = (currentPage: number, interaction: CommandInteraction, disabled: boolean, expirationTimestamp: number, tagInfo: TagInfo) => EmbedWithFooter(`This superfluous bot was created by @earth1337_\nBot version: ${config.version}`)
   .setTitle(`Meta (p${currentPage}/2)`)
   .setDescription(`Internal bot information.\nExpire${disabled ? "d" : "s"} <t:${expirationTimestamp}:R> at <t:${expirationTimestamp}:T>`)
   .addFields(metaFields(interaction, tagInfo)[currentPage])
-  .setFooter({ text: `This superfluous bot was created by @earth1337_\nBot version: ${config.version}`, iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` })
-  .setColor(Colors.Blurple)
-  .setTimestamp();
+  .setColor(Colors.Blurple);
 
 const getNextPage = (currentPage: number, up: boolean) => {
   const possiblePages: number[] = [1, 2];

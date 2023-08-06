@@ -1,8 +1,7 @@
 import { AttachmentBuilder, EmbedBuilder, EmbedField } from "discord.js";
+import { Caesar, EmbedWithFooter } from "../../functions/Misc";
 import { AchievementInfo } from "../types";
-import { Caesar } from "../../functions/Misc";
 import { Colour } from "../colours";
-import { footerText } from "../../functions/achievements";
 
 interface AchievementsData {
   [key: string]: AchievementInfo;
@@ -38,19 +37,15 @@ function getDoomedFields(achievementInfo: AchievementInfo): EmbedField[] {
   return fields;
 }
 
-export const Achievement = (achievementInfo: AchievementInfo) => new EmbedBuilder()
+export const Achievement = (achievementInfo: AchievementInfo) => EmbedWithFooter()
   .setTitle(`Achievement ${achievementInfo.id} ("${achievementInfo.fullName}")`)
   .setColor(Colour.achievement)
-  .addFields(getFields(achievementInfo))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(getFields(achievementInfo));
 
-export const DoomedAchievement = (achievementInfo: AchievementInfo) => new EmbedBuilder()
+export const DoomedAchievement = (achievementInfo: AchievementInfo) => EmbedWithFooter()
   .setTitle(Caesar.randomEncrypt(`Achievement ${achievementInfo.id} ("${achievementInfo.fullName}")`))
   .setColor(Colour.pelle)
-  .addFields(getDoomedFields(achievementInfo))
-  .setTimestamp()
-  .setFooter({ text: Caesar.randomEncrypt(footerText()), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(getDoomedFields(achievementInfo));
 
 export const achievements: AchievementsData = {
   "11": {

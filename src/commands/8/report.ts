@@ -1,5 +1,5 @@
-import { ApplicationCommandOptionType, ApplicationCommandType, Colors, CommandInteraction, EmbedBuilder, MessageResolvable, TextChannel } from "discord.js";
-import { authorTitle, link } from "../../functions/Misc";
+import { ApplicationCommandOptionType, ApplicationCommandType, Colors, CommandInteraction, MessageResolvable, TextChannel } from "discord.js";
+import { EmbedWithFooter, authorTitle, link } from "../../functions/Misc";
 import { Command } from "../../command";
 import { ids } from "../../config.json";
 
@@ -63,10 +63,9 @@ export const report: Command = {
       return;
     }
 
-    const messageReportEmbed = new EmbedBuilder()
+    const messageReportEmbed = EmbedWithFooter(Math.random() > 0.5 ? ":modsbased:" : ":modsbiased:")
       .setTitle("Message reported")
       .setColor(Colors.Red)
-      .setTimestamp()
       .setFields(
         { name: "Reason", value: `Reported by <@${interaction.user.id}> because: ${reason.substring(0, 400)}` },
         { name: `Message`, value: `${message.content.substring(0, 400)}${message.content.length > 400 ? "..." : ""} \n ${link("__**[link]**__", message.url)}` },

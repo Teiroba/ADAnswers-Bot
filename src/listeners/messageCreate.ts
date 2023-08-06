@@ -1,4 +1,5 @@
-import { Client, Colors, EmbedBuilder, Message, TextChannel } from "discord.js";
+import { Client, Colors, Message, TextChannel } from "discord.js";
+import { EmbedWithFooter } from "../functions/Misc";
 import { ids } from "../config.json";
 
 export default (client: Client): void => {
@@ -44,13 +45,12 @@ async function isScammer(message: Message<boolean>): Promise<boolean> {
 
 function muteScammer(message: Message<boolean>): void {
   console.log("Running muteScammer");
-  const embed = new EmbedBuilder()
+  const embed = EmbedWithFooter("")
     .setTitle(`${message.author.username}#${message.author.discriminator}`)
     .setThumbnail(message.author.displayAvatarURL())
     .setColor(Colors.Blurple)
     .addFields({ name: "Message", value: message.content, inline: false })
-    .setDescription(`Message sent by <@${message.author.id}> was deleted and member was muted.`)
-    .setTimestamp();
+    .setDescription(`Message sent by <@${message.author.id}> was deleted and member was muted.`);
 
   message.member?.roles.add(ids.mutedRole);
   message.delete();

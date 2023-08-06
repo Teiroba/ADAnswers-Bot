@@ -1,38 +1,31 @@
+import { EmbedWithFooter, quantify } from "../../../functions/Misc";
 import { PerkShopUpgrade, TeresaInfo } from "../../types";
-import { footerText, quantify } from "../../../functions/Misc";
 import { Colour } from "../../colours";
-import { EmbedBuilder } from "discord.js";
 import { format } from "../../format";
 
-export const TeresaBasicInfoEmbed = () => new EmbedBuilder()
+export const TeresaBasicInfoEmbed = () => EmbedWithFooter()
   .setTitle("Teresa, the Celestial of Reality")
   .setColor(Colour.teresa)
   .addFields(
     { name: " ", value: Teresa.info },
     { name: Teresa.mainMechanic.name, value: Teresa.mainMechanic.explanation },
     { name: "Formula", value: Teresa.mainMechanic.formula! }
-  )
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  );
 
-export const TeresaRealityEmbed = () => new EmbedBuilder()
+export const TeresaRealityEmbed = () => EmbedWithFooter()
   .setTitle("Teresa's Reality")
   .setColor(Colour.teresa)
   .addFields(
     { name: "Challenge", value: Teresa.reality.challenge },
     { name: "Reward", value: `${Teresa.reality.reward}\nFormula: ${Teresa.reality.formula}` },
-  )
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  );
 
-export const TeresaPerkShopEmbed = () => new EmbedBuilder()
+export const TeresaPerkShopEmbed = () => EmbedWithFooter()
   .setTitle("Teresa's Perk Shop")
   .setColor(Colour.teresa)
   .addFields(Teresa.perkShop.map(buyable => (
-    { name: `${buyable.name}`, value: perkShopUpgradeDescription(buyable)
-    })))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+    { name: `${buyable.name}`, value: perkShopUpgradeDescription(buyable) }
+  )));
 
 function perkShopUpgradeDescription(buyable: PerkShopUpgrade): string {
   let costInfo: string = `${quantify("Perk Point", buyable.initialCost)}`;
@@ -42,12 +35,10 @@ function perkShopUpgradeDescription(buyable: PerkShopUpgrade): string {
   return `${buyable.description}\n**Cost:** ${costInfo}\n**Cap:** ${buyable.cap}`;
 }
 
-export const TeresaUnlockEmbed = () => new EmbedBuilder()
+export const TeresaUnlockEmbed = () => EmbedWithFooter()
   .setTitle("Teresa's Unlocks")
   .setColor(Colour.teresa)
-  .addFields(Teresa.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} Reality Machines`, value: unlock.effect })))
-  .setTimestamp()
-  .setFooter({ text: footerText(), iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+  .addFields(Teresa.unlocks.map(unlock => ({ name: `${format(unlock.requirement)} Reality Machines`, value: unlock.effect })));
 
 
 export const Teresa: TeresaInfo = {

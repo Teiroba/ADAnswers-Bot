@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction, EmbedBuilder, User } from "discord.js";
-import { authorTitle, isHelper, link } from "../../../functions/Misc";
+import { EmbedWithFooter, authorTitle, isHelper, link } from "../../../functions/Misc";
 import fetch from "node-fetch";
 import { lastfm } from "../../../config.json";
 
@@ -54,7 +54,7 @@ export async function currentListeningSubcommand(interaction: ChatInputCommandIn
 
   const basicTrackInfo = `${currentTrack.artist["#text"]} - ${currentTrack.name}`;
 
-  const embed: EmbedBuilder = new EmbedBuilder()
+  const embed: EmbedBuilder = EmbedWithFooter(`Data from LastFM`)
     .setAuthor({ name: authorTitle(interaction), iconURL: user.displayAvatarURL() })
     .setTitle(basicTrackInfo)
     .setDescription(`${link("Earth's Spotify account", "https://open.spotify.com/user/divineicbm?si=30b3b0b0b2c84ccd")} / ${link("Earth's LastFM account", "https://www.last.fm/user/earthernsence")}`)
@@ -63,9 +63,7 @@ export async function currentListeningSubcommand(interaction: ChatInputCommandIn
       { name: "Link", value: `${link(`${basicTrackInfo}`, currentTrack.url)}` },
       { name: "Currently listening?", value: `${wasOldTrack ? `No, this was the last track he listened to. He listened to this track on ${currentlyListeningContent}` : `Yes, he is currently listening to this track`}` }
     ])
-    .setThumbnail(currentTrack.image[2]["#text"])
-    .setTimestamp()
-    .setFooter({ text: `Data from LastFM`, iconURL: `https://cdn.discordapp.com/attachments/351479640755404820/980696250389254195/antimatter.png` });
+    .setThumbnail(currentTrack.image[2]["#text"]);
 
   await interaction.reply({ embeds: [embed], ephemeral: !isHelper(interaction) });
 }
