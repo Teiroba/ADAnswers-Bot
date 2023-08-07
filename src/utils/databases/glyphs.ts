@@ -457,7 +457,7 @@ export const specialGlyphs: GlyphData = {
       "Top Right": {
         name: "Happiness",
         effect: "...nothing but sit there and cutely smile at you...",
-        effectFormula: "N/A"
+        effectFormula: "+(Random amount between 35 and 100)%"
       },
       "Bottom Right": {
         name: "Loyalty",

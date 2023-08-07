@@ -257,8 +257,33 @@ export type VInfo = CelestialInfo & {
 }
 
 export type LaitelaInfo = CelestialInfo & { }
-// This applies to ALL the celestials (Requirement, Boost/Reward, possible formula).
-// The hard part is the resource.
+
+// eslint-disable-next-line no-shadow
+export enum SingularityMilestoneBoosts {
+  // ESlint is being particularly fucky with Enums today.
+  /* eslint-disable no-unused-vars */
+  SELF,
+  GAME,
+  LAITELA,
+  /* eslint-enable no-unused-vars */
+}
+
+export type SingularityMilestone = {
+  id: string,
+  name: string,
+  effect: string,
+  formula?: string,
+  direction: SingularityMilestoneBoosts,
+  initialCost: number,
+  scalingCost?: number,
+  cap?: number,
+  softcap?: number,
+  // HasGraph?: boolean;
+  // Graph?: string;
+}
+
+// TODO: Audit this naming scheme. It sucks.
+export type SingularityData = SingularityMilestone[]
 
 export type TeresaUnlock = {
   reward: string,

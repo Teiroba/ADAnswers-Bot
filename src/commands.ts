@@ -60,6 +60,7 @@ import { glyph } from "./commands/5/glyph";
 import { perk } from "./commands/5/perk";
 import { reality } from "./commands/5/reality";
 import { rm } from "./commands/5/rm";
+import { singularityMilestone } from "./commands/5/singularitymilestone";
 
 import { achievements } from "./commands/6/achievements";
 import { adbonus } from "./commands/6/adbonus";
@@ -137,7 +138,7 @@ export const Commands: Array<Command | AutocompleteCommand> = [
   // Page 4 - Eternity Challenges / Dilation
   bankedinfinities, changeectree, dilation, dilationgrind, dilationtrees, ec, eco, ecs, ecsattt, eternitychallenge, eternitychallengeorder, failec,
   // Page 5 - Reality
-  alchemy, autoachievement, celestials, gamevsrealtime, glyph, perk, reality, rm,
+  alchemy, autoachievement, celestials, gamevsrealtime, glyph, perk, reality, rm, singularityMilestone,
   // Page 6 - Misc
   achievements, adbonus, bottombuttons, challenge, galaxyscaling, importexport, news, offlineticks, upgrade, oom,
   // Page 7 - Misc
