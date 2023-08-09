@@ -1,4 +1,4 @@
-import { EmbedWithFooter, makeEnumeration } from "../../functions/Misc";
+import { EmbedWithFooter, makeEnumeration } from "../../functions/formatting";
 import { Colour } from "../colours";
 import { EmbedField } from "discord.js";
 import { PerkInfo } from "../types";

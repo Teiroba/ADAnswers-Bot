@@ -1,7 +1,7 @@
 import { Model, ModelStatic, Op } from "sequelize";
 import { StringIndexedStringObjectType, TagInfo } from "../utils/types";
 import { CommandInteraction } from "discord.js";
-import { quantify } from "./Misc";
+import { quantify } from "./formatting";
 import { tags } from "../bot";
 
 export async function incrementTag(name: string, tagsRequested: typeof tags.personUsage) {

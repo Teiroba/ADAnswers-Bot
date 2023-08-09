@@ -1,7 +1,8 @@
 import { AttachmentBuilder, EmbedBuilder, EmbedField } from "discord.js";
-import { Caesar, EmbedWithFooter } from "../../functions/Misc";
 import { AchievementInfo } from "../types";
+import { Caesar } from "../../functions/Misc";
 import { Colour } from "../colours";
+import { EmbedWithFooter } from "../../functions/formatting";
 
 interface AchievementsData {
   [key: string]: AchievementInfo;
@@ -990,3 +991,23 @@ export const achievementsMessageObject = {
 };
 
 export const acceptableArgs = Object.keys(achievementsMessageObject).filter(key => !key.startsWith("r")).concat(Object.keys(achievements));
+
+export function findAchievementByName(name: String): AchievementInfo | String {
+  for (const ach in achievements) {
+    if (achievements[ach].fullName === name) {
+      return achievements[ach];
+    }
+  }
+
+  return "Unknown achievement in findAchievementByName";
+}
+
+export function findAchievementByID(id: Number): AchievementInfo | String {
+  for (const ach in achievements) {
+    if (achievements[ach].id === id) {
+      return achievements[ach];
+    }
+  }
+
+  return "Unknown achievement in findAchievementByID";
+}

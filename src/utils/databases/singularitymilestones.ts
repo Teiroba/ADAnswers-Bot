@@ -1,7 +1,7 @@
 import { EmbedBuilder, EmbedField } from "discord.js";
 import { SingularityData, SingularityMilestone, SingularityMilestoneBoosts } from "../types";
 import { Colour } from "../colours";
-import { EmbedWithFooter } from "../../functions/Misc";
+import { EmbedWithFooter } from "../../functions/formatting";
 import { format } from "../format";
 
 const AUTOCOMPLETE_MAX_ITEMS = 20;

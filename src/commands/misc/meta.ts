@@ -1,11 +1,12 @@
 import { ActionRowBuilder, ApplicationCommandType, ButtonBuilder, ButtonStyle, Colors, CommandInteraction, EmbedField, InteractionReplyOptions, MessageComponentInteraction, User } from "discord.js";
-import { EmbedWithFooter, authorTitle, isHelper, link } from "../../functions/Misc";
+import { EmbedWithFooter, authorTitle, link } from "../../functions/formatting";
 import { dhmsFromMS, getTimezoneFromDate } from "../../functions/time";
 import { getTagInfo, parsePlayersList, parseTimeList, parseUsersList } from "../../functions/database";
 import { Command } from "../../command";
 import { Commands } from "../../commands";
 import { TagInfo } from "../../utils/types";
 import config from "../../config.json";
+import { isHelper } from "../../functions/Misc";
 
 const NOW = Date();
 const metaFields = (interaction: CommandInteraction, tagInfo: TagInfo): { [key: number]: Array<EmbedField> } => ({

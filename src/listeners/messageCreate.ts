@@ -1,5 +1,5 @@
 import { Client, Colors, Message, TextChannel } from "discord.js";
-import { EmbedWithFooter } from "../functions/Misc";
+import { EmbedWithFooter } from "../functions/formatting";
 import { ids } from "../config.json";
 
 export default (client: Client): void => {

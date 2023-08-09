@@ -1,6 +1,7 @@
 import { ActionRowBuilder, ApplicationCommandOptionType, ApplicationCommandType, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, Colors, ComponentType, MessageComponentInteraction, Role } from "discord.js";
-import { EmbedWithFooter, isEligibleForHelper, isHelper } from "../../functions/Misc";
+import { isEligibleForHelper, isHelper } from "../../functions/Misc";
 import { Command } from "../../command";
+import { EmbedWithFooter } from "../../functions/formatting";
 import { ids } from "../../config.json";
 
 // eslint-disable-next-line max-params

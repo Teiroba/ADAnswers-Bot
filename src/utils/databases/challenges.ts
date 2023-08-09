@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import { EmbedBuilder, EmbedField } from "discord.js";
-import { EmbedWithFooter, link } from "../../functions/Misc";
+import { EmbedWithFooter, link } from "../../functions/formatting";
 import { Colour } from "../colours";
 
 const base = ` It is recommended to have at least the first 12 infinity upgrades and 100 spare IP.

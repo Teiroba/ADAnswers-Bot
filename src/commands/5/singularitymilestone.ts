@@ -7,8 +7,9 @@ import {
   User,
 } from "discord.js";
 import { SingularityMilestoneEmbed, isValidSingularityMilestoneId, singularityNameAutocomplete } from "../../utils/databases/singularitymilestones";
-import { authorTitle, isHelper } from "../../functions/Misc";
 import { AutocompleteCommand } from "../../command";
+import { authorTitle } from "../../functions/formatting";
+import { isHelper } from "../../functions/Misc";
 
 
 export const singularityMilestone: AutocompleteCommand = {

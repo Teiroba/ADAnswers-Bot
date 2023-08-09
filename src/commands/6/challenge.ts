@@ -1,7 +1,8 @@
 import * as Challenge from "../../utils/databases/challenges";
 import { ApplicationCommandOptionChoiceData, ApplicationCommandOptionType, ApplicationCommandType, AttachmentBuilder, CommandInteraction, EmbedBuilder, User } from "discord.js";
-import { authorTitle, isHelper } from "../../functions/Misc";
 import { Command } from "../../command";
+import { authorTitle } from "../../functions/formatting";
+import { isHelper } from "../../functions/Misc";
 
 function getChoices(): ApplicationCommandOptionChoiceData<string>[] {
   const choices: Array<ApplicationCommandOptionChoiceData<string>> = [];

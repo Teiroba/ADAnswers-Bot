@@ -1,7 +1,7 @@
 import { GlyphEffect, GlyphInfo } from "../types";
 import { Colour } from "../colours";
 import { EmbedField } from "discord.js";
-import { EmbedWithFooter } from "../../functions/Misc";
+import { EmbedWithFooter } from "../../functions/formatting";
 import { Symbols } from "../symbols";
 import { capitalize } from "../extensions";
 

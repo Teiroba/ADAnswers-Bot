@@ -1,4 +1,4 @@
-import { EmbedWithFooter, quantify } from "../../../functions/Misc";
+import { EmbedWithFooter, quantify } from "../../../functions/formatting";
 import { PerkShopUpgrade, TeresaInfo } from "../../types";
 import { Colour } from "../../colours";
 import { format } from "../../format";

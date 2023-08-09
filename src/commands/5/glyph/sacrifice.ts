@@ -1,7 +1,8 @@
 import { AttachmentBuilder, ChatInputCommandInteraction, EmbedBuilder, User } from "discord.js";
 import { GlyphEmbedGetter, basicGlyphs, specialGlyphs } from "../../../utils/databases/glyphs";
-import { authorTitle, isHelper } from "../../../functions/Misc";
+import { authorTitle } from "../../../functions/formatting";
 import { ids } from "../../../config.json";
+import { isHelper } from "../../../functions/Misc";
 
 export async function sacrificeGlyphSubcommand(interaction: ChatInputCommandInteraction): Promise<void> {
   const user: User = interaction.member === null ? interaction.user : interaction.member.user as User;

@@ -1,8 +1,9 @@
 import { ApplicationCommandOptionType, ApplicationCommandType, AttachmentBuilder, CommandInteraction, EmbedBuilder, User } from "discord.js";
-import { authorTitle, isHelper } from "../../functions/Misc";
 import { Command } from "../../command";
 import { StudyInfo } from "../../utils/types";
 import { TimeStudy } from "../../functions/studies";
+import { authorTitle } from "../../functions/formatting";
+import { isHelper } from "../../functions/Misc";
 import { studies } from "../../utils/databases/studies";
 
 export const study: Command = {

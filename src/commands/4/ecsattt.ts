@@ -1,7 +1,8 @@
 import { ApplicationCommandOptionType, ApplicationCommandType, CommandInteraction } from "discord.js";
-import { isHelper, makeEnumeration, quantify } from "../../functions/Misc";
+import { makeEnumeration, quantify } from "../../functions/formatting";
 import { Command } from "../../command";
 import { ecsAtTTAmount } from "../../functions/ecs";
+import { isHelper } from "../../functions/Misc";
 
 export const ecsattt: Command = {
   name: "ecsattt",

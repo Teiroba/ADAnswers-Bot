@@ -11,7 +11,7 @@ import { ActionRowBuilder,
   TextInputBuilder,
   TextInputStyle,
   User } from "discord.js";
-import { authorTitle, quantify } from "../../functions/Misc";
+import { authorTitle, quantify } from "../../functions/formatting";
 import { Colour } from "../../utils/colours";
 import { Command } from "../../command";
 import { randomClue } from "../../utils/databases/clues";

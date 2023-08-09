@@ -1,4 +1,4 @@
-import { EmbedWithFooter, pluralise } from "../../functions/Misc";
+import { EmbedWithFooter, pluralise } from "../../functions/formatting";
 import { Colour } from "../colours";
 import { EmbedField } from "discord.js";
 import { UpgradeInfo } from "../types";

@@ -1,6 +1,7 @@
 import { AttachmentBuilder, ChatInputCommandInteraction, EmbedBuilder, User } from "discord.js";
-import { authorTitle, isHelper } from "../../../functions/Misc";
 import { Ra } from "../../../utils/databases/celestials/ra";
+import { authorTitle } from "../../../functions/formatting";
+import { isHelper } from "../../../functions/Misc";
 
 export async function raCelestialSubcommand(interaction: ChatInputCommandInteraction): Promise<void> {
   const infoRequested = interaction.options.getSubcommand();

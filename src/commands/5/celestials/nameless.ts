@@ -1,6 +1,7 @@
 import { AttachmentBuilder, ChatInputCommandInteraction, User } from "discord.js";
 import { NamelessBasicInfoEmbed, NamelessRealityEmbed, NamelessUnlockEmbed } from "../../../utils/databases/celestials/nameless";
-import { authorTitle, isHelper } from "../../../functions/Misc";
+import { authorTitle } from "../../../functions/formatting";
+import { isHelper } from "../../../functions/Misc";
 
 export async function namelessCelestialSubcommand(interaction: ChatInputCommandInteraction): Promise<void> {
   const infoRequested = interaction.options.getSubcommand();

@@ -1,6 +1,7 @@
 import { AttachmentBuilder, ChatInputCommandInteraction, User } from "discord.js";
 import { EffarigBasicInfoEmbed, EffarigRealityEmbed, EffarigUnlockEmbed } from "../../../utils/databases/celestials/effarig";
-import { authorTitle, isHelper } from "../../../functions/Misc";
+import { authorTitle } from "../../../functions/formatting";
+import { isHelper } from "../../../functions/Misc";
 
 export async function effarigCelestialSubcommand(interaction: ChatInputCommandInteraction): Promise<void> {
   const infoRequested = interaction.options.getSubcommand();

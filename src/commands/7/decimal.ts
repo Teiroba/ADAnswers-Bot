@@ -1,7 +1,8 @@
 /* eslint-disable max-len */
 import { ApplicationCommandType, CommandInteraction } from "discord.js";
-import { isHelper, link } from "../../functions/Misc";
 import { Command } from "../../command";
+import { isHelper } from "../../functions/Misc";
+import { link } from "../../functions/formatting";
 
 export const decimal: Command = {
   name: "decimal",

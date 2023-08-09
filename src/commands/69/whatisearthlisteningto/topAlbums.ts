@@ -1,6 +1,7 @@
 import { ActionRowBuilder, ButtonBuilder, ButtonStyle, ChatInputCommandInteraction, InteractionReplyOptions, MessageComponentInteraction, StringSelectMenuBuilder, User } from "discord.js";
-import { EmbedWithFooter, authorTitle, isHelper, link } from "../../../functions/Misc";
+import { EmbedWithFooter, authorTitle, link } from "../../../functions/formatting";
 import fetch from "node-fetch";
+import { isHelper } from "../../../functions/Misc";
 import { lastfm } from "../../../config.json";
 
 interface Artist {

@@ -1,5 +1,5 @@
 import { ApplicationCommandOptionType, ApplicationCommandType, ChannelType, CommandInteraction, EmbedBuilder, GuildMember, User } from "discord.js";
-import { authorTitleFromUser, link, pluralise, quantify } from "../../functions/Misc";
+import { authorTitleFromUser, link, pluralise, quantify } from "../../functions/formatting";
 import { getJeopardyPlayerTag, getPersonTag } from "../../functions/database";
 import { Command } from "../../command";
 import { UserInfo } from "../../utils/types";

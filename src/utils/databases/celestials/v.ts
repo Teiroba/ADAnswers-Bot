@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 
-import { EmbedWithFooter, quantify } from "../../../functions/Misc";
+import { EmbedWithFooter, quantify } from "../../../functions/formatting";
 import { VAchievement, VInfo } from "../../types";
 import { Colour } from "../../colours";
 import { EmbedBuilder } from "discord.js";

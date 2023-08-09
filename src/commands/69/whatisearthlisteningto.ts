@@ -1,7 +1,8 @@
 import { ApplicationCommandOptionType, ApplicationCommandType, CommandInteraction } from "discord.js";
-import { isHelper, link } from "../../functions/Misc";
 import { Command } from "../../command";
 import { currentListeningSubcommand } from "./whatisearthlisteningto/current";
+import { isHelper } from "../../functions/Misc";
+import { link } from "../../functions/formatting";
 import { topAlbumsSubcommand } from "./whatisearthlisteningto/topAlbums";
 import { topArtistsSubcommand } from "./whatisearthlisteningto/topArtists";
 import { topTracksSubcommand } from "./whatisearthlisteningto/topTracks";

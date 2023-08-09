@@ -1,9 +1,9 @@
-import { AchievementEmbeds, AchievementImages, acceptableArgs, achievementsMessageObject } from "../../utils/databases/achievements";
+import { AchievementEmbeds, AchievementImages, acceptableArgs, achievementsMessageObject, findAchievementByID, findAchievementByName } from "../../utils/databases/achievements";
 import { ActionRowBuilder, ApplicationCommandOptionType, ApplicationCommandType, ButtonBuilder, ButtonStyle, CommandInteraction, ComponentType, InteractionReplyOptions, MessageComponentInteraction, User } from "discord.js";
-import { authorTitle, isHelper, link } from "../../functions/Misc";
-import { findAchievementByID, findAchievementByName } from "../../functions/achievements";
+import { authorTitle, link } from "../../functions/formatting";
 import { AchievementInfo } from "src/utils/types";
 import { Command } from "../../command";
+import { isHelper } from "../../functions/Misc";
 
 function getChoices() {
   const choices = [];

@@ -1,4 +1,4 @@
-import { EmbedWithFooter, makeEnumeration, quantify } from "./Misc";
+import { EmbedWithFooter, makeEnumeration, quantify } from "./formatting";
 import { Colour } from "../utils/colours";
 import { EmbedBuilder } from "discord.js";
 import { StudyInfo } from "../utils/types";

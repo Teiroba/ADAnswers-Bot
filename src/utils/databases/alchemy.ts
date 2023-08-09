@@ -1,5 +1,5 @@
 import { AttachmentBuilder, EmbedBuilder, EmbedField } from "discord.js";
-import { EmbedWithFooter, makeEnumeration, quantify } from "../../functions/Misc";
+import { EmbedWithFooter, makeEnumeration, quantify } from "../../functions/formatting";
 import { AlchemyResource } from "../types";
 import { Colour } from "../colours";
 import { Symbols } from "../symbols";

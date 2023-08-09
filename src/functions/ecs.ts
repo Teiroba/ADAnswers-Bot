@@ -2,7 +2,7 @@ import { AttachmentBuilder, EmbedBuilder } from "discord.js";
 import { EC, ECsAtTTInfo } from "../utils/types";
 import { ECDescriptions, ECRewards, EternityChallenges, findEC, order, orderAsECs } from "../utils/databases/eternitychallenges";
 import { Colour } from "../utils/colours";
-import { EmbedWithFooter } from "./Misc";
+import { EmbedWithFooter } from "./formatting";
 
 function findCompletionsAtIndex(indexOfCompletion: number): string {
   const completions = Array(12);

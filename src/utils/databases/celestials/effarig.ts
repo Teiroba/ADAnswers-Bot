@@ -1,6 +1,6 @@
 import { Colour } from "../../colours";
 import { EffarigInfo } from "../../types";
-import { EmbedWithFooter } from "../../../functions/Misc";
+import { EmbedWithFooter } from "../../../functions/formatting";
 import { format } from "../../format";
 
 export const EffarigBasicInfoEmbed = () => EmbedWithFooter()

@@ -1,5 +1,5 @@
 import { Colour } from "../../colours";
-import { EmbedWithFooter } from "../../../functions/Misc";
+import { EmbedWithFooter } from "../../../functions/formatting";
 import { NamelessInfo } from "../../types";
 import { format } from "../../format";
 

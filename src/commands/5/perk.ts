@@ -1,8 +1,9 @@
 import { ApplicationCommandOptionData, ApplicationCommandOptionType, ApplicationCommandType, AttachmentBuilder, CommandInteraction, EmbedBuilder, User } from "discord.js";
 import { PerkEmbedGetters, perks } from "../../utils/databases/perks";
 import { PerkInfo, StringIndexedStringObjectType } from "../../utils/types";
-import { authorTitle, isHelper } from "../../functions/Misc";
 import { Command } from "../../command";
+import { authorTitle } from "../../functions/formatting";
+import { isHelper } from "../../functions/Misc";
 
 const perkInfoCommand: StringIndexedStringObjectType = {
   /* eslint-disable max-len */

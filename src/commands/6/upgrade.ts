@@ -1,8 +1,9 @@
 import { ApplicationCommandOptionData, ApplicationCommandOptionType, ApplicationCommandType, AttachmentBuilder, CommandInteraction, EmbedBuilder, User } from "discord.js";
 import { UpgradeEmbedGetters, upgrades } from "../../utils/databases/upgrades";
-import { authorTitle, isHelper } from "../../functions/Misc";
 import { Command } from "../../command";
 import { UpgradeInfo } from "../../utils/types";
+import { authorTitle } from "../../functions/formatting";
+import { isHelper } from "../../functions/Misc";
 
 function getChoices(typeOfUpgrade: string): { name: string, value: string, type: any }[] {
   const choices = [];

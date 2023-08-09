@@ -1,6 +1,7 @@
 import { AttachmentBuilder, ChatInputCommandInteraction, User } from "discord.js";
 import { VAchievementEmbed, VAllBasicAchievementsEmbed, VBasicInfoEmbed, VRealityEmbed, VUnlocksEmbed } from "../../../utils/databases/celestials/v";
-import { authorTitle, isHelper } from "../../../functions/Misc";
+import { authorTitle } from "../../../functions/formatting";
+import { isHelper } from "../../../functions/Misc";
 
 export async function vCelestialSubcommand(interaction: ChatInputCommandInteraction): Promise<void> {
   const infoRequested = interaction.options.getSubcommand();

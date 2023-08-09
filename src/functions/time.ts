@@ -1,5 +1,5 @@
 import { TimeNoDays, TimeWithClock } from "src/utils/types";
-import { toNumber } from "./Misc";
+import { toNumber } from "./formatting";
 
 export function getTimezoneFromDate(date: Date): string {
   const timezone = date.toString().split(" ")[5];

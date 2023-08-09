@@ -1,6 +1,6 @@
 import { ActionRowBuilder, ApplicationCommandType, AttachmentBuilder, ButtonBuilder, ButtonStyle, CommandInteraction, InteractionReplyOptions, MessageComponentInteraction, StringSelectMenuBuilder } from "discord.js";
 import { Command } from "../../command";
-import { EmbedWithFooter } from "../../functions/Misc";
+import { EmbedWithFooter } from "../../functions/formatting";
 import { commandsByPage } from "../../commands";
 import config from "../../config.json";
 

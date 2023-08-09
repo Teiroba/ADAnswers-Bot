@@ -1,7 +1,8 @@
 import { ApplicationCommandType, CommandInteraction } from "discord.js";
-import { isHelper, randomInArray } from "../../functions/Misc";
 import { Command } from "../../command";
+import { Random } from "../../functions/Random";
 import { bushisms } from "../../utils/databases/bushisms";
+import { isHelper } from "../../functions/Misc";
 
 export const bushism: Command = {
   name: "bushism",
@@ -10,7 +11,7 @@ export const bushism: Command = {
   run: async(interaction: CommandInteraction) => {
     if (!interaction) return;
 
-    const content = randomInArray(bushisms);
+    const content = Random.choice(bushisms)!;
 
     await interaction.reply({ content, ephemeral: !isHelper(interaction) });
   }

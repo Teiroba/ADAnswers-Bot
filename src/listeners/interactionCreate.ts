@@ -9,7 +9,7 @@ import { ActionRowBuilder,
   TextChannel,
   TextInputBuilder,
   TextInputStyle } from "discord.js";
-import { EmbedWithFooter, link } from "../functions/Misc";
+import { EmbedWithFooter, link } from "../functions/formatting";
 import { incrementBigFourTags, incrementTag } from "../functions/database";
 import { AutocompleteCommand } from "../command";
 import { Commands } from "../commands";

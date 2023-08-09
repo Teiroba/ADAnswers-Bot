@@ -1,5 +1,5 @@
 import { ApplicationCommandOptionType, ApplicationCommandType, Colors, CommandInteraction, MessageResolvable, TextChannel } from "discord.js";
-import { EmbedWithFooter, authorTitle, link } from "../../functions/Misc";
+import { EmbedWithFooter, authorTitle, link } from "../../functions/formatting";
 import { Command } from "../../command";
 import { ids } from "../../config.json";
 

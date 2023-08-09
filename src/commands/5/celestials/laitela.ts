@@ -1,6 +1,7 @@
 import { AttachmentBuilder, ChatInputCommandInteraction, User } from "discord.js";
 import { LaitelaBasicInfoEmbed, LaitelaRealityEmbed, LaitelaUnlockEmbed } from "../../../utils/databases/celestials/laitela";
-import { authorTitle, isHelper } from "../../../functions/Misc";
+import { authorTitle } from "../../../functions/formatting";
+import { isHelper } from "../../../functions/Misc";
 
 export async function laitelaCelestialSubcommand(interaction: ChatInputCommandInteraction): Promise<void> {
   const infoRequested = interaction.options.getSubcommand();

@@ -1,6 +1,6 @@
 import { Colour } from "../../colours";
 import { EmbedField } from "discord.js";
-import { EmbedWithFooter } from "../../../functions/Misc";
+import { EmbedWithFooter } from "../../../functions/formatting";
 import { RaCelestial } from "../../../utils/types";
 
 interface MemoryData {

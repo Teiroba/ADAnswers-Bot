@@ -1,5 +1,6 @@
-import { formatDate, randomInArray } from "../../functions/Misc";
+import { Random } from "../../functions/Random";
 import fetch from "node-fetch";
+import { formatDate } from "../../functions/formatting";
 
 interface Clue {
   date: string,
@@ -104,5 +105,5 @@ const jeopardyClues: Clue[] = [];
 }());
 
 export function randomClue(): Clue {
-  return randomInArray<Clue>(jeopardyClues);
+  return Random.choice(jeopardyClues)!;
 }

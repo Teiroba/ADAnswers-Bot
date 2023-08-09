@@ -1,8 +1,9 @@
 import { ActionRowBuilder, ApplicationCommandOptionType, ApplicationCommandType, ButtonBuilder, ButtonStyle, CommandInteraction, ComponentType, InteractionReplyOptions, MessageComponentInteraction, User } from "discord.js";
 import { EternityChallengeEmbeds, EternityChallengeImages, shownFields } from "../../functions/ecs";
-import { authorTitle, isHelper } from "../../functions/Misc";
 import { findEC, order } from "../../utils/databases/eternitychallenges";
 import { Command } from "../../command";
+import { authorTitle } from "../../functions/formatting";
+import { isHelper } from "../../functions/Misc";
 
 const getNextPage = (currentPage: string, up: boolean) => {
   let newPage = up ? order[order.indexOf(currentPage) + 1] : order[order.indexOf(currentPage) - 1];
